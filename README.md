@@ -11,4 +11,4 @@ The goal of Tempest Tunes is to provide curated music to its user based upon the
 
 - **API's**: <br />
 ![alt text](https://github.com/RileyMoore01/TempestTunes/img/OpenWeatherMap.jpg?raw=true)
-![alt text](https://github.com/RileyMoore01/TempestTunes/img/img.jpg?raw=true)
+![alt text](https://github.com/RileyMoore01/TempestTunes/img/Spotify.jpg?raw=true)
