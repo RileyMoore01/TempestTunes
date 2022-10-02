@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>Example of the Authorization Code flow with Spotify</title>
-    
+    <script src="https://kit.fontawesome.com/f71a1b6b13.js" crossorigin="anonymous"></script>    
     <style type="text/css">
 
       #login, #loggedin {
@@ -35,24 +35,46 @@
       }
 
       #login{
-        height: 32rem;
+        height: 20rem;
         width: 32rem;
         background-color: white;
         border-radius: 6px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem;
       }
 
       #footer{
         height: 80px;
         background-color: black;
       }
-      
-      .button{
-        background-color: #1DB954;
+
+      .button {
+        font: bold 30px Arial;
         text-decoration: none;
         color: black;
-        height: 80px;
-        width: 100px;
-        font-size: 1rem;
+        
+      }
+
+      .buttonWrapper{
+        background-color: #1DB954;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 2px 6px 2px 6px;
+        border-top: 1px solid #CCCCCC;
+        border-right: 1px solid #333333;
+        border-bottom: 1px solid #333333;
+        border-left: 1px solid #CCCCCC;
+        width: 19rem;
+        height: 3rem;
+        border-radius: 50px;
+      }
+
+      #introduction{
+        text-align: center;
       }
           
       </style>
@@ -61,12 +83,14 @@
   <body>
     <div class="container">
       <div id = 'header'>
-        <h1>Header</h1>
+        Header
       </div>
       <div id="main">
         <div id="login">
-          <h1>Welcome to TempestTunes, please login below</h1>
-          <a href="/login" class="button">Log in with Spotify</a>
+          <h1 id = 'introduction'>Welcome to TempestTunes, please login below</h1>
+          <div class = 'buttonWrapper'>
+            <a href="/login" class="button"><i class = "fa-brands fa-spotify"></i>Log in with Spotify</a>
+          </div>
         </div>
 
 
