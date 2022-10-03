@@ -1,14 +1,21 @@
 # import required modules
 import requests, json
+from models.CurrentWeather import CurrentWeather
+
+#Global variables
+OPEN_WEATHER_MAP_APIKEY = 'fed200574f31448d3c4ef74409fc60bf'
+ZIP_CODE = 76210
+DATA = CurrentWeather()
 
 def get_zipcode():
-    #connect html page for the user to enter their current zip code
+    #connect html page for the user to enter their current zip 
+    return 0
 
 def get_weather_data_by_location():
     #####################################
     #   Get lat, lon, and city name     #
     #####################################
-    url = f'http://api.openweathermap.org/geo/1.0/zip?zip={zip}&appid={OPEN_WEATHER_MAP_APIKEY}'
+    url = f'http://api.openweathermap.org/geo/1.0/zip?zip={ZIP_CODE}&appid={OPEN_WEATHER_MAP_APIKEY}'
     response = requests.get(url)
     data = json.loads(response.text)
 
