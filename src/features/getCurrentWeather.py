@@ -1,5 +1,6 @@
 # import required modules
 import requests, json
+from pickletools import long1
 from models.CurrentWeather import CurrentWeather
 
 #Global variables
@@ -29,6 +30,16 @@ def get_weather_data_by_location():
     url2 = f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={OPEN_WEATHER_MAP_APIKEY}'
     cityResponse = requests.get(url2)
     weatherData = json.loads(cityResponse.text)
+
+    DATA.Lon = lon
+    DATA.Lat = lat
+    DATA.City = city
+    DATA.TempMin = data["temp_min"]
+    DATA.TempMax = data["temp_max"]
+    DATA.Temp = data["temp"]
+    DATA.AtmoPressure = data["pressure"]
+    DATA.Humidity = data["humidity"]
+    DATA.Visibility = data["visibility"]
 
     return weatherData
     if response.status_code == 200:
