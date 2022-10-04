@@ -20,7 +20,7 @@ myCursor = db.cursor()
 ############################        
 # PID |  USER  |  PASS     #        PID must be a unqiue value in the table
 # -------------------------#        
-# 0  |  test1  |  pass     #        All attributes within the table wil are non-nullable
+# 0  |  test1  |  pass     #        All attributes within the table are non-nullable
 # 1  |  test2  |  pass     #
 #############################
 
