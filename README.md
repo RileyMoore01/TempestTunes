@@ -10,5 +10,5 @@ The intended functionality is to take the current weather conditions and use tho
 The goal of Tempest Tunes is to provide curated music to its user based upon the current weather. In doing so, we will learn about connecting to API’s such as Spotify and OpenWeatherMap. WIth the use of an API, the end model will be purley software with no inclusion of hardware other than the computer executing the software. Now to explain a little of the user experience, users will be able to connect to our user interface and begin their curated music experience. When a new user begins, they will be prompted to select how they feel according to the selected weather status. This will tell the Tempest Tunes algorithm what to play for that user during the current weather. Once the user becomes accustomed to Tempest Tunes, they will be able to open the user interface and automatically play their music. From that point there will be features to add music to selected playlist, dislike songs and songs similar to that song, and create their own playlists for a weather type if they desire. The true outcome of Tempest Tunes is to allow the user to decide how they want to feel according to the weather and enjoy the music to enhance their mood. 
 
 - **API's**: <br />
-![alt text](https://github.com/RileyMoore01/TempestTunes/img/OpenWeatherMap.jpg?raw=true)
-![alt text](https://github.com/RileyMoore01/TempestTunes/img/Spotify.jpg?raw=true)
+![My Image](OpenWeatherMap.jpg)
+![My Image](Spotify.jpg)
