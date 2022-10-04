@@ -1,6 +1,9 @@
 # import required modules
+from hashlib import new
+from operator import ne
 import requests, json
 from pickletools import long1
+
 from models.CurrentWeather import CurrentWeather
 
 #Global variables

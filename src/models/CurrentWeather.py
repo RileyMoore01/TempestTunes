@@ -1,3 +1,6 @@
+from types import LambdaType
+
+
 class CurrentWeather():
     Lat = 0.0
     Lon = 0.0
