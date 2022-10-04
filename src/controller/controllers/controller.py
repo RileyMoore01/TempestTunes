@@ -5,9 +5,16 @@
 
 import mysql.connector as sql
 
-db = sql.connect(host='localhost',
+##########################
+#       Db Info          #
+##########################
+#Host: 127.0.0.1
+#Port: 3306 
+#User: root
+#Pass: 
+db = sql.connect(host='127.0.0.1',
                 user='root',
-                password='password.',
+                password='pass',
                 database='testDb')
 
 myCursor = db.cursor()
@@ -27,8 +34,9 @@ myCursor = db.cursor()
 ##########################
 #    Logic Handeling     #
 ##########################
-myCursor.execute("set password for 'testDb'@'localhost' = PASSWORD('pass')")
+# myCursor.execute("set password for 'testDb'@'localhost' = PASSWORD('pass')")
+# myCursor.execute("SET PASSWORD FOR 'root'@'localhost' = 'pass'")
 
-myCursor.execute('DESCRIBE User')
+print(myCursor.execute('DESCRIBE user'))
 # mycursor.execute("insert into User (PID, user_name, password) values (1, 'riley', 'pass')")
 
