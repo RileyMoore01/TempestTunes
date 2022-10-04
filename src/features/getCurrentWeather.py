@@ -1,7 +1,7 @@
 # import required modules
 import requests, json
 from pickletools import long1
-from models.CurrentWeather import CurrentWeather
+from TempestTunes.models import CurrentWeather
 
 #Global variables
 OPEN_WEATHER_MAP_APIKEY = 'fed200574f31448d3c4ef74409fc60bf'

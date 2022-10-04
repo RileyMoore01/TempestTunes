@@ -22,7 +22,7 @@ myCursor = db.cursor()
 # -------------------------#        
 # 0  |  test1  |  pass     #        All attributes within the table wil are non-nullable
 # 1  |  test2  |  pass     #
-#############################
+############################
 
 ##########################
 #    Logic Handeling     #
