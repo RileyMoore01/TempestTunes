@@ -1,9 +1,3 @@
 
-    # DATA.Lat = lat
-    # DATA.City = city
-    # DATA.TempMin = data["temp_min"]
-    # DATA.TempMax = data["temp_max"]
-    # DATA.Temp = data["temp"]
-    # DATA.AtmoPressure = data["pressure"]
-    # DATA.Humidity = data["humidity"]
-    # DATA.Visibility = data["visibilit
+    Tempature = cellData["temp"]
+    Tempature = 1.8 * (Tempature - 273) + 32    #Conver to fahrenheit
