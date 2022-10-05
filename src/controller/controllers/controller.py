@@ -34,8 +34,8 @@ myCursor = db.cursor()
 ##########################
 #    Logic Handeling     #
 ##########################
-# myCursor.execute("set password for 'testDb'@'localhost' = PASSWORD('pass')")
 # myCursor.execute("SET PASSWORD FOR 'root'@'localhost' = 'pass'")
+myCursor.execute("select * from testDb")
 
 print(myCursor.execute('DESCRIBE user'))
 # mycursor.execute("insert into User (PID, user_name, password) values (1, 'riley', 'pass')")

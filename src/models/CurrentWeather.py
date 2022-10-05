@@ -12,5 +12,4 @@ class weather:
         self.Description = Description
 
 def test(Lat, Lon, City, Temp, TempMin, TempMax, AtmoPressure, Humidity, Visibility, Description):
-    # newWeather = weather(Lat, Lon, City, Temp, TempMin, TempMax, AtmoPressure, Humidity, Visibility, Description)
-    # return newWeather
+    print("hello world")
