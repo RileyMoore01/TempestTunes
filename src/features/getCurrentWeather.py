@@ -1,14 +1,16 @@
 # import required modules
 import requests, json
 from pickletools import long1
-# from models.CurrentWeather import init
+import sys
+sys.path.append("/../TempestTunes/src/models")
+import newWeatherLocation
 
 #Global variables
 OPEN_WEATHER_MAP_APIKEY = 'fed200574f31448d3c4ef74409fc60bf'
 ZIP_CODE = 76210
 
 def get_zipcode():
-    #connect html page for the user to enter their current zip 
+    #connect html page for the user to enter their current zip
     return 0
 
 def get_weather_data_by_location():
@@ -24,7 +26,7 @@ def get_weather_data_by_location():
     city = data["name"]
 
     #####################################
-    #        Get current weather       #
+    #        Get current weather        #
     #####################################
     url2 = f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={OPEN_WEATHER_MAP_APIKEY}'
     cityResponse = requests.get(url2)
