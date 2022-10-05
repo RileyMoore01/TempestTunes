@@ -1,9 +1,9 @@
 # import required modules
 import requests, json
 from pickletools import long1
-import sys
-sys.path.append("../")
-from models.CurrentWeather import test
+# import sys
+# sys.path.append("../")
+# from models.CurrentWeather import test
 
 #Global variables
 OPEN_WEATHER_MAP_APIKEY = 'fed200574f31448d3c4ef74409fc60bf'
@@ -32,17 +32,19 @@ def get_weather_data_by_location():
     cityResponse = requests.get(url2)
     weatherData = json.loads(cityResponse.text)
 
-    # weather = init(lat, lon, city)
-    # print(weather)
-    # DATA.Lon = lon
-    # DATA.Lat = lat
-    # DATA.City = city
-    # DATA.TempMin = data["temp_min"]
-    # DATA.TempMax = data["temp_max"]
-    # DATA.Temp = data["temp"]
-    # DATA.AtmoPressure = data["pressure"]
-    # DATA.Humidity = data["humidity"]
-    # DATA.Visibility = data["visibility"]
+    cellData = weatherData["main"]
+    Tempature = cellData["temp"]
+    Tempature = 1.8 * (Tempature - 273) + 32    #Conver to fahrenheit
+    TempMin = cellData["temp_min"]
+    TempMin = 1.8 * (TempMin - 273) + 32    #Conver to fahrenheit
+    TempMax = cellData["temp_max"]
+    TempMax = 1.8 * (TempMax - 273) + 32    #Conver to fahrenheit
+    Pressure = cellData["pressure"]
+    Humidity = cellData["humidity"]
+
+    #
+    #  Send this data to determine which playlist to play here
+    #
 
     return weatherData
     if response.status_code == 200:
@@ -52,4 +54,4 @@ def get_weather_data_by_location():
 
 if __name__ == '__main__':
     print("Getting Weather Data")
-    print( get_weather_data_by_location() )
+    get_weather_data_by_location()
