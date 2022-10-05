@@ -13,3 +13,5 @@ class weather:
 
 def test(Lat, Lon, City, Temp, TempMin, TempMax, AtmoPressure, Humidity, Visibility, Description):
     print("hello world")
+
+    
