@@ -8,4 +8,4 @@ db = sql.connect(host='120.0.01',
 
 myCursor = db.cursor()
 
-myCursor.execute("select * from testDb root where PID = '1'")
+myCursor.execute("insert into User ('PID', 'user_name','password' values('1', 'test', 'pass'")
