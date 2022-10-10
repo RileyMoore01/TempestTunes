@@ -38,8 +38,15 @@ myCursor = db.cursor()
 #    Logic Handeling     #
 ##########################
 
+myCursor.execute("show databases")
+for x in myCursor:
+    print(x)
+
 # myCursor.execute("SET PASSWORD FOR 'root'@'localhost' = 'pass'")
-# mycursor.execute("insert into User (PID, user_name, password) values (1, 'riley', 'pass')")
-# myCursor.execute("select * from User where PID = '1'")
-print(myCursor.execute('DESCRIBE user'))
+
+myCursor.execute("Use testDb;")
+# myCursor.execute("""insert into user (PID, user_name, password) values ('2', 'riley', 'pass')""")
+
+print(myCursor.execute("""use testDb;
+                         select * from user"""))
 
