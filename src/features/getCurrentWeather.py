@@ -1,98 +1,71 @@
-#API Call Key:     http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={API key}
-#ex.)     api.openweathermap.org/data/2.5/forecast?id=524901&appid={API key}
-#    Response: { "cod": 429,"message": "Your account is temporary blocked due to exceeding of requests limitation of your subscription type. 
-#                 Please choose the proper subscription http://openweathermap.org/price" }
-
-
-###########################
-#       Version 1         #
-###########################
-
 # import required modules
+
 import requests, json
+from pickletools import long1
 
-# Enter your API key here
-api_key = "fed200574f31448d3c4ef74409fc60bf"
+# import sys
+# sys.path.append("../")
+# from models.CurrentWeather import test
 
-# base_url variable to store url
-base_url = "http://api.openweathermap.org/data/2.5/weather?"
+#Global variables
+OPEN_WEATHER_MAP_APIKEY = 'fed200574f31448d3c4ef74409fc60bf'
+ZIP_CODE = 76210
 
-# Give city name
-city_name = input('Enter city name : ')
+def get_zipcode():
+    #connect html page for the user to enter their current zip
+    return 0
 
-# complete_url variable to store
-# complete url address
-complete_url = "http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={api_key}"
+def get_weather_data_by_location():
+    ####################################
+    #   Get lat, lon, and city name     #
+    #####################################
 
-# get method of requests module
-# return response object
-response = requests.get(complete_url)
+    url = f'http://api.openweathermap.org/geo/1.0/zip?zip={ZIP_CODE}&appid={OPEN_WEATHER_MAP_APIKEY}'
+    response = requests.get(url)
+    data = json.loads(response.text)
 
-# json method of response object
-# convert json format data into
-# python format data
-x = response.json()
+    lat = data["lat"]
+    lon = data["lon"]
+    city = data["name"]
 
-# Now x contains list of nested dictionaries
-# Check the value of "cod" key is equal to
-# "404", means city is found otherwise,
-# city is not found
-if x["cod"] != "404":
+    #####################################
+    #        Get current weather        #
+    #####################################
 
-    # store the value of "main"
-    # key in variable y
-    y = x["main"]
+    url2 = f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={OPEN_WEATHER_MAP_APIKEY}'
+    cityResponse = requests.get(url2)
+    weatherData = json.loads(cityResponse.text)
 
-    # store the value corresponding
-    # to the "temp" key of y
-    current_temperature = y["temp"]
+    Tempature = cellData["temp"]
+    Tempature = 1.8 * (Tempature - 273) + 32    #Conver to fahrenheit
 
-    # store the value corresponding
-    # to the "pressure" key of y
-    current_pressure = y["pressure"]
+    TempMin = cellData["temp_min"]
+    TempMin = 1.8 * (TempMin - 273) + 32    #Conver to fahrenheit
 
-    # store the value corresponding
-    # to the "humidity" key of y
-    current_humidity = y["humidity"]
+    TempMax = cellData["temp_max"]
+    TempMax = 1.8 * (TempMax - 273) + 32    #Conver to fahrenheit
 
-    # store the value of "weather"
-    # key in variable z
-    z = x["weather"]
+    cellData = weatherData["main"]
+    Pressure = cellData["pressure"]
+    Humidity = cellData["humidity"]
 
-    # store the value corresponding
-    # to the "description" key at
-    # the 0th index of z
-    weather_description = z[0]["description"]
 
-    # print following values
-    print(" Temperature (in kelvin unit) = " +
-                    str(current_temperature) +
-        "\n atmospheric pressure (in hPa unit) = " +
-                    str(current_pressure) +
-        "\n humidity (in percentage) = " +
-                    str(current_humidity) +
-        "\n description = " +
-                    str(weather_description))
+    print(Pressure)
+    print(Humidity)
 
-else:
-    print(" City Not Found ")
+    #
+    #  Send this data to determine which playlist to play here
+    #
 
-###########################
-#       Version 2         #
-###########################
+    return weatherData
 
-OPEN_WEATHER_MAP_APIKEY = '8fd4b4bcadcb256004173dd55278a0da'
-
-def get_weather_data_by_location( lat, long):
-    url = f'https://api.openweathermap.org/data/2.5/onecall?lat={lat}&lon={long}&appid={OPEN_WEATHER_MAP_APIKEY}&units=metric'
-    print(f"Getting data via {url}")
-    r = requests.get(url)
-    return r.json()
-    if r.status_code == 200:
-        return r.json()
+    if response.status_code == 200:
+        return response.json() 
     else:
         return None
 
+
+
 if __name__ == '__main__':
     print("Getting Weather Data")
-    print( get_weather_data_by_location( '22.300910042194783', '114.17070449064359') )
+    get_weather_data_by_location()

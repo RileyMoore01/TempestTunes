@@ -1,0 +1,14 @@
+Page 1: 
+  We are going to ask you some questions on how certain weather makes you feel to bring the best experience to you
+  
+Page 2: 
+  How does hot and sunny weather make you feel?
+  
+Page 3:
+  How do rainy days make you feel?
+Page 4: 
+  How does snow make you feel?
+Page 5: 
+  When it is humid, how does that make you feel?
+Page 6: 
+  
