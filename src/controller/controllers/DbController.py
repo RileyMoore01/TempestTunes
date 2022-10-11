@@ -7,7 +7,7 @@ import mysql.connector as sql
 #Host: 127.0.0.1
 #Port: 3306 
 #User: root
-#Pass: 
+#Pass: pass
 db = sql.connect(host='127.0.0.1',
                 user='root',
                 password='pass',
@@ -47,6 +47,5 @@ for x in myCursor:
 myCursor.execute("Use testDb;")
 # myCursor.execute("""insert into user (PID, user_name, password) values ('2', 'riley', 'pass')""")
 
-print(myCursor.execute("""use testDb;
-                         select * from user"""))
+print(myCursor.execute("""select * from user where PID = '1'"""))
 
