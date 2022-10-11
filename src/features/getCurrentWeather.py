@@ -42,6 +42,9 @@ def get_weather_data_by_location():
     Pressure = cellData["pressure"]
     Humidity = cellData["humidity"]
 
+    print(Pressure)
+    print(Humidity)
+
     #
     #  Send this data to determine which playlist to play here
     #

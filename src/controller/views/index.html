@@ -7,9 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
+    <form method="POST">
         <input type="text" name="tag"><br>
         <input type="submit" value="Go"><br>
+        <form action="{{ asset_tag }}" method="get">
     </form>
 </body>
 </html>
