@@ -1,6 +1,8 @@
 # import required modules
+
 import requests, json
 from pickletools import long1
+
 # import sys
 # sys.path.append("../")
 # from models.CurrentWeather import test
@@ -11,12 +13,13 @@ ZIP_CODE = 76210
 
 def get_zipcode():
     #connect html page for the user to enter their current zip
-    return 0#
+    return 0
 
 def get_weather_data_by_location():
     ####################################
     #   Get lat, lon, and city name     #
     #####################################
+
     url = f'http://api.openweathermap.org/geo/1.0/zip?zip={ZIP_CODE}&appid={OPEN_WEATHER_MAP_APIKEY}'
     response = requests.get(url)
     data = json.loads(response.text)
@@ -28,19 +31,24 @@ def get_weather_data_by_location():
     #####################################
     #        Get current weather        #
     #####################################
+
     url2 = f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={OPEN_WEATHER_MAP_APIKEY}'
     cityResponse = requests.get(url2)
     weatherData = json.loads(cityResponse.text)
 
-    cellData = weatherData["main"]
     Tempature = cellData["temp"]
     Tempature = 1.8 * (Tempature - 273) + 32    #Conver to fahrenheit
+
     TempMin = cellData["temp_min"]
     TempMin = 1.8 * (TempMin - 273) + 32    #Conver to fahrenheit
+
     TempMax = cellData["temp_max"]
     TempMax = 1.8 * (TempMax - 273) + 32    #Conver to fahrenheit
+
+    cellData = weatherData["main"]
     Pressure = cellData["pressure"]
     Humidity = cellData["humidity"]
+
 
     print(Pressure)
     print(Humidity)
@@ -50,10 +58,13 @@ def get_weather_data_by_location():
     #
 
     return weatherData
+
     if response.status_code == 200:
         return response.json() 
     else:
         return None
+
+
 
 if __name__ == '__main__':
     print("Getting Weather Data")

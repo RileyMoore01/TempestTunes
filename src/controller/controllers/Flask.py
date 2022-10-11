@@ -1,8 +1,11 @@
 #pip install flask
+
 from flask import request, Flask, render_template
+
 app = Flask('server')
 
 @app.route('/py', methods=['Get', 'POST'])
+
 def server():
     if request.method == 'POST':
         # Get data from the form

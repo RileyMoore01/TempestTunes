@@ -1,8 +1,10 @@
 #pip install mysql-connector
+
 import mysql.connector as sql
 
 def testConnection():
     try:
+
         ##########################
         #       Db Info          #
         ##########################
@@ -17,6 +19,7 @@ def testConnection():
 
         myCursor = db.cursor()
         print("*****MySql database connection is open*****")
+
 
 
         ##########################
@@ -36,6 +39,7 @@ def testConnection():
         ############################
 
 
+
         ##########################
         #    Logic Handeling     #
         ##########################
@@ -49,8 +53,10 @@ def testConnection():
         print(myCursor.execute("DESCRIBE user"))
         print(myCursor.execute("""SELECT * FROM user"""))
 
+
     except sql.Error as e:
         print("*****Error reading data from MySql database*****", e)
+
 
     finally:
         if db.is_connected():
