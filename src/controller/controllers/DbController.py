@@ -24,6 +24,7 @@ myCursor = db.cursor()
 #Only needs to be ran once for creation of the DB
 # myCursor.execute('CREATE DATABASE testDb')
 # myCursor.execute("CREATE TABLE User (PID int PRIMARY KEY AUTO_INCREMENT, user_name varchar(50), password varchar(50))")
+# myCursor.execute("SET PASSWORD FOR 'root'@'localhost' = 'pass'")
 
 ############################        Example model
 # PID |  USER  |  PASS     #        PID must be a unqiue value in the table
@@ -41,8 +42,6 @@ myCursor = db.cursor()
 myCursor.execute("show databases")
 for x in myCursor:
     print(x)
-
-# myCursor.execute("SET PASSWORD FOR 'root'@'localhost' = 'pass'")
 
 myCursor.execute("Use testDb;")
 # myCursor.execute("""insert into user (PID, user_name, password) values ('2', 'riley', 'pass')""")
