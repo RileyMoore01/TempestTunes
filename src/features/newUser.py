@@ -1,4 +1,5 @@
 #pip install mysql-connector
+import mysql.connector as sql
 ##########################
 #       Db Info          #
 ##########################
