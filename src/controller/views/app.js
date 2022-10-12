@@ -55,7 +55,6 @@ function fetchAccessToken( code ){
     
 }
 
-
 function callAuthorizationAPI(body) {
     let xhr = new XMLHttpRequest();
     xhr.open("POST", TOKEN, true);
@@ -184,8 +183,12 @@ function handlePlaylistTrackReponse(){
 }
 
 function displayUsername(username){
-    const userProfile = document.getElementById('userProfile')
-    userProfile.innerText = 'Logged in as ' + username
+    const userProfile = document.querySelectorAll('.userProfile')
+    
+    userProfile.forEach(userProfile =>{
+        userProfile.firstChild.innerText = 'Logged in as ' + username 
+        localStorage.setItem("username", username);
+    })
 }
 
 function handleCurrentUserResponse(){
@@ -233,7 +236,6 @@ function navigateToMainPage(e){
     inputPageContainer.style.display = 'grid'
     let pastPlaylistContainer = document.getElementById('pastPlaylistContainer')
     pastPlaylistContainer.style.display = 'none';
-    
 }
 
 function populatePastPlaylistPage(){
@@ -259,7 +261,7 @@ closeModalButtons.forEach(button =>{
     button.addEventListener('click', () =>{
         const modal = button.closest('.modal')
         closeModal(modal)
-})
+    })
 })
 
 function openModal(modal){

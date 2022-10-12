@@ -27,9 +27,9 @@
 
     <div id = 'inputPageContainer' class="inputPageContainer">
         <div class="header">
-            <a class = 'nav' id ="userProfile" href="">Logged in as</a>
-            <a class = 'nav' href="#mainpage" onclick="navigateToMainPage()">Tempest Tunes</a>
-            <a class = 'nav' href="#playlist" onclick="navigateToPastPlaylistPage()">Past Playlists</a>
+            <a class = 'nav userProfile' href=""><span>Logged in as</span></a>
+            <a class = 'nav' href="#mainpage" onclick="navigateToMainPage()"><span>Tempest Tunes</span></a>
+            <a class = 'nav' href="#playlist" onclick="navigateToPastPlaylistPage()"><span>Past Playlists</span></a>
         </div>
         <div class="main">
             <div id = 'modal' class = 'modal'>
@@ -127,9 +127,9 @@
 
     <div class="pastPlaylistContainer" id="pastPlaylistContainer">
         <div class="header">
-            <a href="">Logged in as</a>
-            <a class = 'nav' href="#mainpage" onclick="navigateToMainPage()">Tempest Tunes</a>
-            <a href="#" onclick="navigateToPastPlaylistPage()">Past Playlists</a>
+            <a href="" class = 'nav userProfile'><span>Logged in as</span></a>
+            <a class = 'nav' href="#mainpage" onclick="navigateToMainPage()"><span>Tempest Tunes</span></a>
+            <a href="#" class = 'nav' onclick="navigateToPastPlaylistPage()"><span>Past Playlists</span></a>
         </div>
         <h1 id ='playlistTitle'>Past Playlists</h1> 
         <div class = 'mainPlaylist'>
