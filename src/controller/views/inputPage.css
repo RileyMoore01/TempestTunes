@@ -12,6 +12,7 @@ body{
     background: linear-gradient(#1DB954, #9198e5);
 }
 
+
 .header{
     display:flex;
     flex-direction: row;
