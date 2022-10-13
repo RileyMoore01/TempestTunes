@@ -158,10 +158,7 @@ form{
     background-color: white;
 }
 
-.input input:focus{
-    border: 2px solid green;
-    
-}
+
 
 .input select:focus{
     border: 2px solid #1DB954;
