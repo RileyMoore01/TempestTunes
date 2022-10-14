@@ -68,6 +68,16 @@ body{
     padding: 0 1rem 0 1rem;
 }
 
+.nav{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav:first-child > span { margin-right: auto; }
+
+.nav:last-child  > span { margin-left: auto;  }
+
 .header a{
     font-weight: bold;
     text-decoration: none;
@@ -146,6 +156,13 @@ form{
     border-radius: 50px;
     width: 229px;
     background-color: white;
+}
+
+
+
+.input select:focus{
+    border: 2px solid #1DB954;
+    
 }
 
 .input option{

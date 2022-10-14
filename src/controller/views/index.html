@@ -27,9 +27,9 @@
 
     <div id = 'inputPageContainer' class="inputPageContainer">
         <div class="header">
-            <a class = 'nav' id ="userProfile" href="">Logged in as</a>
-            <a class = 'nav' href="#mainpage" onclick="navigateToMainPage()">Tempest Tunes</a>
-            <a class = 'nav' href="#playlist" onclick="navigateToPastPlaylistPage()">Past Playlists</a>
+            <a class = 'nav userProfile' href=""><span>Logged in as</span></a>
+            <a class = 'nav' href="#mainpage" onclick="navigateToMainPage()"><span>Tempest Tunes</span></a>
+            <a class = 'nav' href="#playlist" onclick="navigateToPastPlaylistPage()"><span>Past Playlists</span></a>
         </div>
         <div class="main">
             <div id = 'modal' class = 'modal'>
@@ -43,7 +43,7 @@
                     <form action="" method = "get" class = 'formBody'>
                         <div class = 'input'>
                             <label for="name">Playlist Name:</label>
-                            <input type="text">
+                            <input type="text" id = "playlistName">
                         </div>
                         <div class = 'input'>
                             <label for="name">Playlist Image:</label>
@@ -59,7 +59,7 @@
                         <p id = "imageP"> Image must be 300px by 300px and under 4mb</p>
 
                         <div class="buttonWrap">
-                        <a href="#" data-modal-target = "#modal">
+                        <a href="#" data-modal-target = "#modal" onclick="createPlaylistInformation()">
                             <i class="fa-brands fa-spotify fa-lg"></i>
                             Export to Spotify
                         </a>
@@ -126,9 +126,9 @@
 
     <div class="pastPlaylistContainer" id="pastPlaylistContainer">
         <div class="header">
-            <a href="">Logged in as</a>
-            <a class = 'nav' href="#mainpage" onclick="navigateToMainPage()">Tempest Tunes</a>
-            <a href="#" onclick="navigateToPastPlaylistPage()">Past Playlists</a>
+            <a href="" class = 'nav userProfile'><span>Logged in as</span></a>
+            <a class = 'nav' href="#mainpage" onclick="navigateToMainPage()"><span>Tempest Tunes</span></a>
+            <a href="#" class = 'nav' onclick="navigateToPastPlaylistPage()"><span>Past Playlists</span></a>
         </div>
         <h1 id ='playlistTitle'>Past Playlists</h1> 
         <div class = 'mainPlaylist'>
