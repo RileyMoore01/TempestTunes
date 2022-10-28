@@ -74,10 +74,17 @@ def AddNewUser():
         )
 
         insertStatement = (
-            "INSERT INTO user (user_name) "
-            "VALUES('first')"
+            "INSERT INTO user (PID, user_name, password, mSunny, mSnowy, mRainy, mWindy) "
+            "VALUES(%s, '%s', '%s', %s,  %s, %s, %s)"
         )
-        data = ["..."]      # INSERT USER INPUT HERE ---------------------------
+        
+        PID = cursor.execute("Select MAX PID from user")
+        mSunny = 0
+        mRainy = 0
+        mSnowy = 0
+        mWindy = 0
+        
+        data = [PID, "...", "...", mSunny, mSnowy, mRainy, mRainy]      # INSERT USER INPUT HERE ---------------------------
 
         # Execute, Commit, and Close database
         cursor.execute(insertStatement)
