@@ -3,6 +3,7 @@
 import mysql.connector as sql
 
 def testConnection():
+    
     try:
 
         ##########################
@@ -17,8 +18,8 @@ def testConnection():
                         password='pass',
                         database='testDb')
 
-        myCursor = db.cursor()
-        print("*****MySql database connection is open*****")
+        cursor = db.cursor(buffered=True)
+        print("***** MySql database connection is open *****")
 
 
 
@@ -39,27 +40,44 @@ def testConnection():
         ############################
 
 
-
         ##########################
         #    Logic Handeling     #
         ##########################
 
         print("--------- Current Databases ---------")
-        myCursor.execute("show databases")
-        for x in myCursor:
+        cursor.execute("show databases")
+        for x in cursor:
             print(x)
         print("--------- End of Databases ---------")
 
-        print(myCursor.execute("DESCRIBE user"))
-        print(myCursor.execute("""SELECT * FROM user"""))
+        ##########################
+        #    Insert Statement    #
+        ##########################
+        table = (
+            "SELECT * from spUsername"
+        )
+
+        insertStatement = (
+            "INSERT INTO spUsername (user_name) "
+            "VALUES('first')"
+        )
+        data = ["jacob"]
+
+        # Execute, Commit, and Close database
+        cursor.execute(insertStatement)
+        db.commit()
+        db.close()
+
 
 
     except sql.Error as e:
-        print("*****Error reading data from MySql database*****", e)
+        print("***** Error reading data from MySql database *****", e)
 
 
     finally:
         if db.is_connected():
             db.close()
-            myCursor.close()
-            print("*****MySql database connection closed*****")
+            cursor.close()
+            print("***** MySql database connection closed *****")
+
+testConnection()
