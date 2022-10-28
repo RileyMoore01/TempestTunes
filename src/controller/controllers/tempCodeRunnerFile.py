@@ -1,2 +1,5 @@
-be user"))
-    print(myCursor.execute("""select * from user where PID = '1'"""))
+print("--------- Current Databases ---------")
+        cursor.execute("show databases")
+        for x in cursor:
+            print(x)
+        print("--------- End of Databases ---------")
