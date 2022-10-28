@@ -32,42 +32,11 @@ def testConnection():
         # myCursor.execute("CREATE TABLE User (PID int PRIMARY KEY AUTO_INCREMENT, user_name varchar(50), password varchar(50))")
         # myCursor.execute("SET PASSWORD FOR 'root'@'localhost' = 'pass'")
 
-        ############################        Example model
-        # PID |  USER  |  PASS     #        PID must be a unqiue value in the table
-        # -------------------------#        
-        # 0  |  test1  |  pass     #        All attributes within the table are non-nullable
-        # 1  |  test2  |  pass     #
-        ############################
-
-
-        ##########################
-        #    Logic Handeling     #
-        ##########################
-
         print("--------- Current Databases ---------")
         cursor.execute("show databases")
         for x in cursor:
             print(x)
         print("--------- End of Databases ---------")
-
-        ##########################
-        #    Insert Statement    #
-        ##########################
-        table = (
-            "SELECT * from spUsername"
-        )
-
-        insertStatement = (
-            "INSERT INTO spUsername (user_name) "
-            "VALUES('first')"
-        )
-        data = ["jacob"]
-
-        # Execute, Commit, and Close database
-        cursor.execute(insertStatement)
-        db.commit()
-        db.close()
-
 
 
     except sql.Error as e:
@@ -79,5 +48,34 @@ def testConnection():
             db.close()
             cursor.close()
             print("***** MySql database connection closed *****")
+
+
+def AddNewUser():
+        db = sql.connect(host='127.0.0.1',
+                        user='root',
+                        password='pass',
+                        database='testDb')
+
+        cursor = db.cursor(buffered=True)
+
+        table = (
+            "SELECT * from spUsername"
+        )
+
+        insertStatement = (
+            "INSERT INTO spUsername (user_name) "
+            "VALUES('first')"
+        )
+        data = ["..."]      # INSERT USER INPUT HERE ---------------------------
+
+        # Execute, Commit, and Close database
+        cursor.execute(insertStatement)
+        db.commit()
+        db.close()
+
+
+
+
+
 
 testConnection()
