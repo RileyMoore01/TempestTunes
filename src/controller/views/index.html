@@ -47,14 +47,15 @@
                         </div>
                         <div class = 'input'>
                             <label for="name">Playlist Image:</label>
-                            <input type="text">
+                            <input type="text" id = "playlistImage">
                             
                         </div>
 
                         <input type = "file"
                                id = "imageLink"
                                name = "avatar"
-                               accept="image/jpeg">
+                               accept="image/jpeg"
+                               onchange="">
 
                         <p id = "imageP"> Image must be 300px by 300px and under 4mb</p>
 
@@ -78,6 +79,15 @@
                         <input type="text">
                     </div>
                     <div class = 'input'>
+                        <label for="name">Weather</label>
+                        <select id = "Weather">
+                            <option value="Snowy">Snowy</option>
+                            <option value="Rainy">Rainy</option>
+                            <option value="Hot">Hot</option>
+                            <option value="Windy">Windy</option>
+                        </select>
+                    </div>
+                    <div class = 'input'>
                         <label for="name">Mood Based on Current Weather:</label>
                         <select>
                             <option value="Happy">Happy</option>
@@ -88,11 +98,6 @@
                             <option value="Relaxed">Relaxed</option>
                         </select>
                     </div>
-                    <div class = 'input'>
-                        <label for="name">Preferred Genre:</label>
-                        <input type="text">
-                    </div>
-                    
                     <div class = 'input'>
                         <label for="name">Favorite Artist:</label>
                         <input type="text">

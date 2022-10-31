@@ -3,6 +3,7 @@
 import mysql.connector as sql
 
 def testConnection():
+    
     try:
 
         ##########################
@@ -17,49 +18,82 @@ def testConnection():
                         password='pass',
                         database='testDb')
 
-        myCursor = db.cursor()
-        print("*****MySql database connection is open*****")
+        cursor = db.cursor(buffered=True)
+        print("***** MySql database connection is open *****")
 
 
 
         ##########################
         #    Table creation      #
         ##########################
+        # Only needs to be ran once for creation of the DB
 
-        #Only needs to be ran once for creation of the DB
+
         # myCursor.execute('CREATE DATABASE testDb')
         # myCursor.execute("CREATE TABLE User (PID int PRIMARY KEY AUTO_INCREMENT, user_name varchar(50), password varchar(50))")
         # myCursor.execute("SET PASSWORD FOR 'root'@'localhost' = 'pass'")
 
-        ############################        Example model
-        # PID |  USER  |  PASS     #        PID must be a unqiue value in the table
-        # -------------------------#        
-        # 0  |  test1  |  pass     #        All attributes within the table are non-nullable
-        # 1  |  test2  |  pass     #
-        ############################
-
-
-
-        ##########################
-        #    Logic Handeling     #
-        ##########################
+        # CREATE TABLE `testdb`.`user` (
+            # `PID` INT NOT NULL AUTO_INCREMENT,
+            # `user_name` VARCHAR(45) NOT NULL,
+            # `password` VARCHAR(45) NULL,
+            # `mSunny` INT NOT NULL,
+            # `mSnowy` INT NOT NULL,
+            # `mRainy` INT NOT NULL,
+            # `mWindy` INT NOT NULL,
+            # PRIMARY KEY (`PID`));
 
         print("--------- Current Databases ---------")
-        myCursor.execute("show databases")
-        for x in myCursor:
+        cursor.execute("show databases")
+        for x in cursor:
             print(x)
         print("--------- End of Databases ---------")
 
-        print(myCursor.execute("DESCRIBE user"))
-        print(myCursor.execute("""SELECT * FROM user"""))
-
 
     except sql.Error as e:
-        print("*****Error reading data from MySql database*****", e)
+        print("***** Error reading data from MySql database *****", e)
 
 
     finally:
         if db.is_connected():
             db.close()
-            myCursor.close()
-            print("*****MySql database connection closed*****")
+            cursor.close()
+            print("***** MySql database connection closed *****")
+
+
+def AddNewUser():
+        db = sql.connect(host='127.0.0.1',
+                        user='root',
+                        password='pass',
+                        database='testDb')
+
+        cursor = db.cursor(buffered=True)
+
+        table = (
+            "SELECT * from user"
+        )
+
+        insertStatement = (
+            "INSERT INTO user (PID, user_name, password, mSunny, mSnowy, mRainy, mWindy) "
+            "VALUES(%s, '%s', '%s', %s,  %s, %s, %s)"
+        )
+        
+        PID = cursor.execute("Select MAX PID from user")
+        mSunny = 0
+        mRainy = 0
+        mSnowy = 0
+        mWindy = 0
+        
+        data = [PID, "...", "...", mSunny, mSnowy, mRainy, mRainy]      # INSERT USER INPUT HERE ---------------------------
+
+        # Execute, Commit, and Close database
+        cursor.execute(insertStatement)
+        db.commit()
+        db.close()
+
+
+
+
+
+
+testConnection()
