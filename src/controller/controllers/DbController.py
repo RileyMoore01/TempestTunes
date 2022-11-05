@@ -72,22 +72,26 @@ def AddNewUser():
         table = (
             "SELECT * from user"
         )
+        
+        # PID = cursor.execute("Select MAX PID from user")
+        userName = "testMySqlConnection"
+        password = "pass"
+        mSunny = 1
+        mRainy = 2
+        mSnowy = 3
+        mWindy = 4
+        Location = "79401"
 
         insertStatement = (
-            "INSERT INTO user (PID, user_name, password, mSunny, mSnowy, mRainy, mWindy) "
-            "VALUES(%s, '%s', '%s', %s,  %s, %s, %s)"
+            "insert into user (user_name, password, mSunny, mWindy, mSnowy, mRainy, Location)  "
+            f"VALUES({userName}, {password}, {mSunny},{mRainy}, {mSnowy}, {mWindy}, {Location})"
         )
         
-        PID = cursor.execute("Select MAX PID from user")
-        mSunny = 0
-        mRainy = 0
-        mSnowy = 0
-        mWindy = 0
         
-        data = [PID, "...", "...", mSunny, mSnowy, mRainy, mRainy]      # INSERT USER INPUT HERE ---------------------------
+        data = ["testMySqlConnection", "pass", mSunny, mSnowy, mRainy, mRainy, Location]      # INSERT USER INPUT HERE ---------------------------
 
         # Execute, Commit, and Close database
-        cursor.execute(insertStatement)
+        cursor.execute(insertStatement, data)
         db.commit()
         db.close()
 
@@ -96,4 +100,4 @@ def AddNewUser():
 
 
 
-testConnection()
+AddNewUser()
