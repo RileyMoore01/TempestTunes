@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css"  href="https://fonts.googleapis.com/css?family=Sofia"> 
+    <script src="https://kit.fontawesome.com/f71a1b6b13.js" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body onload = "onPageLoad()">
+    <div id="container">
+        <div id="loginBox">
+
+            <div class="textBox">
+                <h1>Tempest Tunes</h1>
+                <h2>Login Below</h2>
+            </div>
+
+            <div id="buttonWrap">
+                <a href="#" onclick="requestAuth()"><i class="fa-brands fa-spotify fa-lg"></i>Login Using Spotify</a>
+            </div>
+        </div>
+    </div>
+
+    <div id = 'inputPageContainer' class="inputPageContainer">
+        <div class="header">
+            <a class = 'nav userProfile' href=""><span>Logged in as</span></a>
+            <a class = 'nav' href="#mainpage" onclick="navigateToMainPage()"><span>Tempest Tunes</span></a>
+            <a class = 'nav' href="#playlist" onclick="navigateToPastPlaylistPage()"><span>Past Playlists</span></a>
+        </div>
+        <div class="main">
+            <div id = 'modal' class = 'modal'>
+               
+                <div class="modalHeader">
+                    <div class = 'modalTitle'>Export Playlist</div>
+                    <button data-close-button = "" class = "close-button">
+                        &times;
+                    </button>
+                </div>
+                <div class="modalBody">
+                    <form action="" method = "get" class = 'formBody'>
+                        <div class = 'input'>
+                            <label for="name">Playlist Name:</label>
+                            <input type="text" id = "playlistName">
+                        </div>
+                        <div class = 'input'>
+                            <label for="name">Playlist Image:</label>
+                            <input type="text" id = "playlistImage">
+                            
+                        </div>
+
+                        <input type = "file"
+                               id = "imageLink"
+                               name = "avatar"
+                               accept="image/jpeg"
+                               onchange="">
+
+                        <p id = "imageP"> Image must be 300px by 300px and under 4mb</p>
+
+                        <div class="buttonWrap">
+                        <a href="#" data-modal-target = "#modal" onclick="createPlaylistInformation()">
+                            <i class="fa-brands fa-spotify fa-lg"></i>
+                            Export to Spotify
+                        </a>
+                        </div>
+                        
+                    </form>
+                    
+                </div>
+            </div>
+            <div id="overlay"></div>
+            <div class="inputBox">
+                <h1>Questionnaire</h1>
+                <form action="" method="get">
+                    <div class = 'input'>
+                        <label for="name">Location:</label>
+                        <input type="text">
+                    </div>
+                    <div class = 'input'>
+                        <label for="name">Weather</label>
+                        <select id = "Weather">
+                            <option value="Snowy">Snowy</option>
+                            <option value="Rainy">Rainy</option>
+                            <option value="Hot">Hot</option>
+                            <option value="Windy">Windy</option>
+                        </select>
+                    </div>
+                    <div class = 'input'>
+                        <label for="name">Mood Based on Current Weather:</label>
+                        <select>
+                            <option value="Happy">Happy</option>
+                            <option value="Sad">Sad</option>
+                            <option value="Tired">Tired</option>
+                            <option value="Cozy">Cozy</option>
+                            <option value="Dancing">Dancing</option>
+                            <option value="Relaxed">Relaxed</option>
+                        </select>
+                    </div>
+                    <div class = 'input'>
+                        <label for="name">Favorite Artist:</label>
+                        <input type="text">
+                    </div>
+                    <div class = 'input'>
+                        <label for="name">Favorite Album:</label>
+                        <input type="text">
+                    </div>
+                    <div class = 'input'>
+                        <label for="name">Favorite Song:</label>
+                        <input type="text">
+                    </div>
+                    <div class = 'input large'>
+                        <label for="name"> 
+                            Did you enjoy the
+                            experience of 
+                            using this website?
+                        </label>
+                        <input type="text">
+                    </div>
+                    <div class="buttonWrap">
+                        <a href="#" data-modal-target = "#modal">
+                            <i class="fa-brands fa-spotify fa-lg"></i>
+                            Export to Spotify
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="pastPlaylistContainer" id="pastPlaylistContainer">
+        <div class="header">
+            <a href="" class = 'nav userProfile'><span>Logged in as</span></a>
+            <a class = 'nav' href="#mainpage" onclick="navigateToMainPage()"><span>Tempest Tunes</span></a>
+            <a href="#" class = 'nav' onclick="navigateToPastPlaylistPage()"><span>Past Playlists</span></a>
+        </div>
+        <h1 id ='playlistTitle'>Past Playlists</h1> 
+        <div class = 'mainPlaylist'>
+            
+            <div class="playlistWrapper" id = 'playlistWrapper'></div>
+        </div>
+    </div>
+
+</body>
+</html>
