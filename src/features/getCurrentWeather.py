@@ -37,13 +37,13 @@ def get_weather_data_by_location():
     weatherData = json.loads(cityResponse.text)
 
     Tempature = cellData["temp"]
-    Tempature = 1.8 * (Tempature - 273) + 32    #Conver to fahrenheit
+    Tempature = 1.8 * (Tempature - 273) + 32    #Convert to fahrenheit
 
     TempMin = cellData["temp_min"]
-    TempMin = 1.8 * (TempMin - 273) + 32    #Conver to fahrenheit
+    TempMin = 1.8 * (TempMin - 273) + 32    #Convert to fahrenheit
 
     TempMax = cellData["temp_max"]
-    TempMax = 1.8 * (TempMax - 273) + 32    #Conver to fahrenheit
+    TempMax = 1.8 * (TempMax - 273) + 32    #Convert to fahrenheit
 
     cellData = weatherData["main"]
     Pressure = cellData["pressure"]
