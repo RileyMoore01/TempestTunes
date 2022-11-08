@@ -127,7 +127,7 @@ def getMaxPid():
 
 
 
-def updateWeatherStatus():
+def updateWeatherStatus(RowId, mSunny, mRainy, mSnowy, mWindy):
         db = sql.connect(host='127.0.0.1',
                     user='root',
                     password='pass',
@@ -136,15 +136,8 @@ def updateWeatherStatus():
         if db.is_connected():
             cursor = db.cursor(buffered=True)
             
-            rowId = 5
-            mSunny = 4
-            mRainy = 4
-            mSnowy = 4
-            mWindy = 4
-            Location = '76210'
-
             updateStatement = "update user set mSunny = %s, mWindy = %s, mSnowy=%s, mRainy=%s where row_id=%s"
-            data = (mSunny, mWindy, mSnowy, mRainy, rowId)
+            data = (mSunny, mWindy, mSnowy, mRainy, RowId)
 
             cursor.execute(updateStatement, data)
             db.commit()
@@ -152,7 +145,7 @@ def updateWeatherStatus():
             db.close()
 
 
-def updateLocation():
+def updateLocation(RowId, Location):
         db = sql.connect(host='127.0.0.1',
                 user='root',
                 password='pass',
@@ -160,19 +153,16 @@ def updateLocation():
 
         if db.is_connected():
             cursor = db.cursor(buffered=True)
-            
-            rowId = 5
-            Location = '76219'
 
             updateStatement = "update user set Location=%s where row_id=%s"
-            data = (Location, rowId)
+            data = (Location, RowId)
 
             cursor.execute(updateStatement, data)
             db.commit()
             cursor.close()
             db.close()
 
-def updateUsername():
+def updateUsername(RowId, Username):
         db = sql.connect(host='127.0.0.1',
                 user='root',
                 password='pass',
@@ -181,18 +171,15 @@ def updateUsername():
         if db.is_connected():
             cursor = db.cursor(buffered=True)
             
-            rowId = 4
-            userName = 'testUpdate'
-
             updateStatement = "update user set user_name=%s where row_id=%s"
-            data = (userName, rowId)
+            data = (Username, RowId)
 
             cursor.execute(updateStatement, data)
             db.commit()
             cursor.close()
             db.close()
 
-def updatePassword():
+def updatePassword(RowId, Password):
         db = sql.connect(host='127.0.0.1',
                 user='root',
                 password='pass',
@@ -201,11 +188,8 @@ def updatePassword():
         if db.is_connected():
             cursor = db.cursor(buffered=True)
             
-            rowId = 4
-            password = 'newPasswordUpdate'
-
             updateStatement = "update user set password=%s where row_id=%s"
-            data = (password, rowId)
+            data = (Password, RowId)
 
             cursor.execute(updateStatement, data)
             db.commit()
@@ -223,9 +207,9 @@ def updatePassword():
 # AddNewUser()
 # getMaxPid()
 
-# updateWeatherStatus()
-# updateLocation()
-# updateUsername()
-# updatePassword()
+# updateWeatherStatus(RowId, mSunny, mRainy, mSnowy, mWindy)
+# updateLocation(RowId, Location)
+# updateUsername(RowId, Username)
+# updatePassword(RowdId, Password)
 
 # showAllRecords()
