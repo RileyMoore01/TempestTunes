@@ -34,7 +34,7 @@
 </p>
 
 
-<details><summary>CLICK ME</summary>
+<details><summary>Motivation</summary>
 <p>
 
 #### We can hide anything, even code!
