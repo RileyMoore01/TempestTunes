@@ -32,32 +32,3 @@
 </p>
     
 </details>
-
-
-<h1>Functionailty</h1>
-
-<p>     Once you login in through spotify, we will have you take a quick survey to see how you feel during the various weather condtions. This will allow us to get
-    to know you a little better and bring optimization to our song selection. Ensuring the user has a personally curated playlist.
-</p>
-
-<br />
-<br />
-
-<p>
-        On our side we will take either the google's authinicated location or have the user manually enter their zip code. From there we will call the 
-    OpenWeatheMap API to find the current weather condition in their area. Then we are able to use the Spotify API to find music related to how that
-    user feels off of tags that the API offers.
-</p>
-
-
-<details><summary>Motivation</summary>
-<p>
-
-#### We can hide anything, even code!
-
-```ruby
-   puts "Hello World"
-```
-
-</p>
-</details>
