@@ -32,4 +32,4 @@
     
 </details>
 
-<h1 align="center"><strong>How to use</strong></h1>
+<h1 align="center">How to use</h1>
