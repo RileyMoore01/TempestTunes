@@ -9,7 +9,6 @@
 <br />
 <br />
 
-
 <details><h1>Motivation</h1>
 
 <p>
@@ -33,3 +32,7 @@
 </details>
 
 <h1 align="center">How to use</h1>
+
+<h5> Once you login, you will see your username will be in the top right corner. On the home screen you will be able to see our questions to filled out.
+    When that is complete you will be able to export to Spotify and creating your playlist name, optional playlist image, and press Export.
+</h5>
