@@ -9,7 +9,7 @@
 <br />
 <br />
 
-<h1 align="center">About Us</h1>
+<h2 align="center">About Us</h2>
 <details>
 <h3 align="center">Motivation</h3>
 
@@ -41,7 +41,7 @@
 </details>
 
 <div align="center">
-<h1>How to use</h1>
+<h2>How to use</h2>
 
 <p>
     Once you login, you will see your username will be in the top right corner. On the home screen you will be able to see our questions to filled out.
