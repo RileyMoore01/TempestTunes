@@ -32,3 +32,16 @@
     OpenWeatheMap API to find the current weather condition in their area. Then we are able to use the Spotify API to find music related to how that
     user feels off of tags that the API offers.
 </p>
+
+
+<details><summary>CLICK ME</summary>
+<p>
+
+#### We can hide anything, even code!
+
+```ruby
+   puts "Hello World"
+```
+
+</p>
+</details>
