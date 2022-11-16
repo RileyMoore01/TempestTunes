@@ -23,7 +23,6 @@
 </p>
 
 <br />
-<br />
 
 <p>
         On our side we will take either the google's authinicated location or have the user manually enter their zip code. From there we will call the 
@@ -32,3 +31,5 @@
 </p>
     
 </details>
+
+<h1 algin="center">How to use</h1>
