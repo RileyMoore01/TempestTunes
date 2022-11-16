@@ -324,18 +324,18 @@ function handlePlaylistImageResponse(){
         alert(this.responseText);
     }
 }
-  
+
 function getWeatherOption(){
     let selectedIndex = document.getElementById("Weather").selectedIndex
     let weatherValue = document.getElementById("Weather").options[selectedIndex].value
 
-    if(weatherValue === "Snowy"){
+    if(weatherValue === 1){
         return WINTER
-    }else if(weatherValue === "Rainy"){
+    }else if(weatherValue === 2){
         return RAIN
-    }else if(weatherValue === "Hot"){
+    }else if(weatherValue === 3){
         return HOT
-    }else if(weatherValue === "Windy"){
+    }else if(weatherValue === 4){
         return WINDY
     }
 }
@@ -394,3 +394,7 @@ overlay.addEventListener('click', () =>{
 let inputElement = document.getElementById("imageLink")
 
 
+function getCurrentWeather(form){
+    var sunny = form.sunny.value;
+    alert("You chose: " + sunny);
+}
