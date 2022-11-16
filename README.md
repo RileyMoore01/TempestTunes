@@ -9,7 +9,7 @@
 <br />
 <br />
 
-<h2 align="center">About Us</h2>
+<h3>About Us</h3>
 <details>
 <h3 align="center">Motivation</h3>
 
