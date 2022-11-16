@@ -10,7 +10,8 @@
 <br />
 
 <h1 align="center">About Us</h1>
-<details><h3 align="center">Motivation</h3>
+<details>
+<h3 align="center">Motivation</h3>
 
 <div align="center">
 <p>
@@ -18,7 +19,7 @@
 </p>
 </div>
     
-<h2 align="center">Functionailty</h2>
+<h3 align="center">Functionailty</h3>
 
 <div align="center">
 <p>     Once you login in through spotify, we will have you take a quick survey to see how you feel during the various weather condtions. This will allow us to get
