@@ -17,6 +17,7 @@
     
 <h1>Functionailty</h1>
 
+<div align="center">
 <p>     Once you login in through spotify, we will have you take a quick survey to see how you feel during the various weather condtions. This will allow us to get
     to know you a little better and bring optimization to our song selection. Ensuring the user has a personally curated playlist.
 </p>
@@ -28,6 +29,7 @@
     OpenWeatheMap API to find the current weather condition in their area. Then we are able to use the Spotify API to find music related to how that
     user feels off of tags that the API offers.
 </p>
+</div>
     
 </details>
 
