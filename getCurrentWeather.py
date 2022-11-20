@@ -35,6 +35,7 @@ def get_weather_data_by_location():
     url2 = f'https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={OPEN_WEATHER_MAP_APIKEY}'
     cityResponse = requests.get(url2)
     weatherData = json.loads(cityResponse.text)
+    cellData = weatherData["main"]
 
     Tempature = cellData["temp"]
     Tempature = 1.8 * (Tempature - 273) + 32    #Convert to fahrenheit
@@ -45,7 +46,6 @@ def get_weather_data_by_location():
     TempMax = cellData["temp_max"]
     TempMax = 1.8 * (TempMax - 273) + 32    #Convert to fahrenheit
 
-    cellData = weatherData["main"]
     Pressure = cellData["pressure"]
     Humidity = cellData["humidity"]
 
