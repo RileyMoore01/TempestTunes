@@ -400,15 +400,33 @@ function getCurrentWeather(form){
 }
 
 
-function getWeather( cityID ) {
+function getWeatherZip( ) {
     var key = 'fed200574f31448d3c4ef74409fc60bf';
-    fetch('https://api.openweathermap.org/data/2.5/weather?id=' + cityID+ '&appid=' + key)  
+    zipCode = 79401
+    fetch('http://api.openweathermap.org/geo/1.0/zip?zip=' + zipCode + '&appid=' + key)  
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
-        mapWeather(data); // Call drawWeather
+        mapLocation( data ); // Call drawWeather
     })
     .catch(function() {
+        
+    });
+    
+}
 
+
+function mapLocation( d ) {
+    var lat = d.lat
+    var lon = d.lon
+    var key = 'fed200574f31448d3c4ef74409fc60bf';
+
+    fetch('https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid='+key)  
+    .then(function(resp) { return resp.json() }) // Convert data to json
+    .then(function(data) {
+        mapWeather( data ); // Call drawWeather
+    })
+    .catch(function() {
+        
     });
 }
 
