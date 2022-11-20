@@ -423,7 +423,8 @@ function mapLocation( d ) {
     fetch('https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid='+key)  
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
-        mapWeather( data ); // Call drawWeather
+        console.log( data ); // Call drawWeather
+        mapWeather( data )
     })
     .catch(function() {
         
@@ -434,11 +435,17 @@ function mapLocation( d ) {
 function mapWeather( d ) {
     var celcius = Math.round(parseFloat(d.main.temp)-273.15);
     var fahrenheit = Math.round(((parseFloat(d.main.temp)-273.15)*1.8)+32); 
+    var mainType = d.weather[0].main;
     var description = d.weather[0].description;
+    var windSpeed = d.wind.speed;
+    var humidity = d.main.humidity
     
-    document.getElementById('description').innerHTML = description;
+    document.getElementById('description').innerHTML = 'Description: ' +  description;
     document.getElementById('temp').innerHTML = fahrenheit + '&deg;';
     document.getElementById('location').innerHTML = d.name;
+    document.getElementById('speed').innerHTML = 'Wind Speed: ' + windSpeed;
+    document.getElementById('type').innerHTML = 'Main: ' + mainType;
+    document.getElementById('humidity').innerHTML = 'Humidity: ' + humidity;
     
     if( description.indexOf('rain') > 0 ) {
     document.body.className = 'rainy';
