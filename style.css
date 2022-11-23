@@ -93,15 +93,16 @@ body{
 }
 
 .inputBox{
-    height: 40rem;
+    height: auto;
     width: clamp(500px,30vw,30vw);
     background-color: white;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 3%;
+    border-radius: 15px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 5px;
 }
 
 .input label{
@@ -114,8 +115,10 @@ body{
 }
 
 form{
-    margin: 2rem 0 0 0;
-    
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .buttonWrap a{
@@ -311,4 +314,19 @@ form{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.hidden{
+    display: none;
+}
+
+.nextButton{
+    color: white;
+    background-color: black;
+    width: 3rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
 }

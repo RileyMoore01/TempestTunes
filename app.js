@@ -357,6 +357,18 @@ function createPlaylistInformation(){
 const openModalButtons = document.querySelectorAll('[data-modal-target]');
 const closeModalButtons = document.querySelectorAll('[data-close-button]');
 const overlay = document.getElementById('overlay');
+const nextButton = document.getElementById("nextbutton");
+
+nextButton.addEventListener('click', () =>{
+    const input = document.createElement("input")
+    const label = document.createElement("label")
+
+    document.getElementById('nextbutton').removeChild(document.getElementById('nextbutton').getElementsByTagName('div')[0]);
+    document.getElementById('insert').removeChild(document.getElementById('insert').getElementsByClassName('zipCode')[0])
+
+    document.getElementById('nextbutton').appendChild(input)
+    document.getElementById('nextbutton').appendChild(label)
+})
 
 openModalButtons.forEach(button =>{
         button.addEventListener('click', () =>{
@@ -454,3 +466,4 @@ function mapWeather( d ) {
         document.body.className = 'sunny';
     }
 }
+
