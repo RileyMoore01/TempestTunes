@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Current Weather</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,900" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 1.3em;
+            color: #fff;
+            text-shadow: .1em .1em 0 rgba(0,0,0,0.3);
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: linear-gradient(to right top, #99bbcb, #a5c7d7, #b1d4e2, #bde0ee, #c9edfa);
+        }
+        h1 {
+            margin: 0 auto;
+            font-size: 2.2em;
+            text-align: center;
+            color: #fff;
+            font-size: 5em;
+        }
+        body.sunny {
+            background-image: linear-gradient(to right top, #ff4e50, #ff713e, #ff932b, #ffb41d, #f9d423);
+        }
+        body.cloudy {
+            background-image: linear-gradient(to right top, #63747c, #71858e, #7f96a0, #8da8b2, #9bbac5);
+        }
+        body.rainy {
+            background-image: linear-gradient(to right top, #637c7b, #718e8c, #7ea09e, #8db2b0, #9bc5c3);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="weather">  
+        <div id="type"></div>
+        <div id="description"></div>
+        <h1 id="temp"></h1>
+        <div id="location"></div>
+        <div id="speed"></div>
+        <div id="humidity"></div>
+    </div>
+
+    <script lang="text/javascript">
+
+        function getWeatherZip( ) {
+            var key = 'fed200574f31448d3c4ef74409fc60bf';
+            zipCode = 79401
+            fetch('http://api.openweathermap.org/geo/1.0/zip?zip=' + zipCode + '&appid=' + key)  
+            .then(function(resp) { return resp.json() }) // Convert data to json
+            .then(function(data) {
+                mapLocation( data ); // Call drawWeather
+            })
+            .catch(function() {
+                
+            });
+            
+        }
+        
+
+        function mapLocation( d ) {
+            var lat = d.lat
+            var lon = d.lon
+            var key = 'fed200574f31448d3c4ef74409fc60bf';
+
+            fetch('https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid='+key)  
+            .then(function(resp) { return resp.json() }) // Convert data to json
+            .then(function(data) {
+                console.log( data ); // Call drawWeather
+                mapWeather( data )
+            })
+            .catch(function() {
+                
+            });
+        }
+        
+        
+        function mapWeather( d ) {
+            var celcius = Math.round(parseFloat(d.main.temp)-273.15);
+            var fahrenheit = Math.round(((parseFloat(d.main.temp)-273.15)*1.8)+32); 
+            var mainType = d.weather[0].main;
+            var description = d.weather[0].description;
+            var windSpeed = d.wind.speed;
+            var humidity = d.main.humidity
+            
+            document.getElementById('description').innerHTML = 'Description: ' +  description;
+            document.getElementById('temp').innerHTML = fahrenheit + '&deg;';
+            document.getElementById('location').innerHTML = d.name;
+            document.getElementById('speed').innerHTML = 'Wind Speed: ' + windSpeed;
+            document.getElementById('type').innerHTML = 'Main: ' + mainType;
+            document.getElementById('humidity').innerHTML = 'Humidity: ' + humidity;
+            
+            if( description.indexOf('rain') > 0 ) {
+            document.body.className = 'rainy';
+            } else if( description.indexOf('cloud') > 0 ) {
+                document.body.className = 'cloudy';
+            } else if( description.indexOf('sunny') > 0 ) {
+                document.body.className = 'sunny';
+            }
+        }
+
+    window.onload = function() {
+        getWeatherZip(  );
+    }
+    </script>
+</body>
+</html>
