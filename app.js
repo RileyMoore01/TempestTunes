@@ -400,9 +400,8 @@ function getCurrentWeather(form){
 }
 
 
-function getWeatherZip( ) {
+function getWeatherZip( zipcCode ) {
     var key = 'fed200574f31448d3c4ef74409fc60bf';
-    zipCode = 79401
     fetch('http://api.openweathermap.org/geo/1.0/zip?zip=' + zipCode + '&appid=' + key)  
     .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
