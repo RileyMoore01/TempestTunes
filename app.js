@@ -360,15 +360,31 @@ const overlay = document.getElementById('overlay');
 const nextButton = document.getElementById("nextbutton");
 
 nextButton.addEventListener('click', () =>{
-    const input = document.createElement("input")
-    const label = document.createElement("label")
+    let zipCode = 79416
+    getWeatherZip(zipCode)
 
     document.getElementById('nextbutton').removeChild(document.getElementById('nextbutton').getElementsByTagName('div')[0]);
     document.getElementById('insert').removeChild(document.getElementById('insert').getElementsByClassName('zipCode')[0])
-
-    document.getElementById('nextbutton').appendChild(input)
-    document.getElementById('nextbutton').appendChild(label)
 })
+
+const generateInput = (weatherType) => {
+    const button = document.createElement("div")
+    const input = document.createElement("input")
+    const label = document.createElement("label")
+    button.id = "submitZipCode"
+    button.innerText = "Generate Playlist"
+    button.classList.add('nextButton')
+
+    label.innerText = `What does the ${weatherType} make you feel like?`
+    
+    document.getElementById('nextbutton').classList.remove('nextButton')
+    document.getElementById('nextbutton').classList.add('input')
+    document.getElementById('nextbutton').appendChild(label)
+    document.getElementById('nextbutton').appendChild(input)
+    document.getElementById('nextbutton').appendChild(button)
+    print(document.getElementById('nextbutton'))
+ 
+}
 
 openModalButtons.forEach(button =>{
         button.addEventListener('click', () =>{
@@ -412,7 +428,7 @@ function getCurrentWeather(form){
 }
 
 
-function getWeatherZip( zipcCode ) {
+function getWeatherZip( zipCode ) {
     var key = 'fed200574f31448d3c4ef74409fc60bf';
     fetch('http://api.openweathermap.org/geo/1.0/zip?zip=' + zipCode + '&appid=' + key)  
     .then(function(resp) { return resp.json() }) // Convert data to json
@@ -420,7 +436,7 @@ function getWeatherZip( zipcCode ) {
         mapLocation( data ); // Call drawWeather
     })
     .catch(function() {
-        
+        console.log('error')        
     });
     
 }
@@ -432,14 +448,14 @@ function mapLocation( d ) {
     var key = 'fed200574f31448d3c4ef74409fc60bf';
 
     fetch('https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid='+key)  
-    .then(function(resp) { return resp.json() }) // Convert data to json
     .then(function(data) {
         console.log( data ); // Call drawWeather
         mapWeather( data )
     })
-    .catch(function() {
-        
+    .catch(function(error) {
+        console.log( error )
     });
+    
 }
 
 
@@ -457,13 +473,17 @@ function mapWeather( d ) {
     document.getElementById('speed').innerHTML = 'Wind Speed: ' + windSpeed;
     document.getElementById('type').innerHTML = 'Main: ' + mainType;
     document.getElementById('humidity').innerHTML = 'Humidity: ' + humidity;
+
+    print('here');
     
     if( description.indexOf('rain') > 0 ) {
-    document.body.className = 'rainy';
+        generateInput('rainy');
     } else if( description.indexOf('cloud') > 0 ) {
-        document.body.className = 'cloudy';
+        generateInput('cloud');
     } else if( description.indexOf('sunny') > 0 ) {
-        document.body.className = 'sunny';
+        generateInput('sunny');
     }
+    generateInput('sunny')
+    
 }
 

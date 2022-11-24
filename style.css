@@ -323,10 +323,11 @@ form{
 .nextButton{
     color: white;
     background-color: black;
-    width: 3rem;
+    width: auto;
     height: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 15px;
+    padding: 3px;
 }
