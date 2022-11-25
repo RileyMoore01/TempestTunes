@@ -296,10 +296,9 @@ function handleCreatePlaylistReponse(){
     if ( this.status == 201 ){
         let imageLink = document.getElementById("imageLink").files[0]
         var data = JSON.parse(this.responseText);
-        selectedWeather = getWeatherOption()    
+        selectedWeather = localStorage.getItem('url')    
         localStorage.setItem("newPlaylistId", data.href)
         callApi("GET",selectedWeather,null,handleGetTracksResponse)
-        
     }
     else if ( this.status == 401 ){
         refreshAccessToken()
@@ -385,13 +384,12 @@ const generateInput = (weatherType) => {
 
     document.getElementById('submitButton').classList.remove('hidden')
 
-    label.innerText = `What does the ${weatherType} weather make you feel like?`
+    label.innerText = `What does the ${localStorage.getItem('weather')} weather make you feel like?`
     
     document.getElementById('nextbutton').classList.remove('nextButton')
     document.getElementById('nextbutton').classList.add('input')
     document.getElementById('nextbutton').appendChild(label)
     document.getElementById('nextbutton').appendChild(input)
- 
 }
 
 openModalButtons.forEach(button =>{
@@ -442,12 +440,36 @@ async function getWeatherByZip(zipCode) {
 
 function determineWeather(data){
     if (data.main.temp_max > 80 && data.clouds.all === 0){
-        generateInput('sunny')
+        localStorage.setItem(
+            'weather', 'sunny'            
+        )
+        localStorage.setItem(
+            'url', HOT            
+        )
+        generateInput(HOT)
     } else if (data.main.temp_max < 40 ){
-        generateInput('winter')
-    } else if (data.weather){
-        generateInput('rainy')
+        localStorage.setItem(
+            'weather', 'winter'            
+        )
+        localStorage.setItem(
+            'url', WINTER            
+        )
+        generateInput(WINTER)
+    } else if (data.weather[0] == 'rain'){
+        localStorage.setItem(
+            'weather', 'rain'            
+        )
+        localStorage.setItem(
+            'url', RAIN            
+        )
+        generateInput(RAIN)
     } else if (data.main.temp_max < 80 ){
-        generateInput('cloudy')
+        localStorage.setItem(
+            'weather', 'windy'            
+        )
+        localStorage.setItem(
+            'url', WINDY            
+        )
+        generateInput(WINDY)
     } else generateInput('wut')
 }
