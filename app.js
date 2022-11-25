@@ -360,7 +360,8 @@ const overlay = document.getElementById('overlay');
 const nextButton = document.getElementById("nextbutton");
 
 nextButton.addEventListener('click', () =>{
-    let zipCode = 79416
+    let zipCode = document.getElementById('zipCodes').value
+    console.log(document.getElementById('zipCodes').value)
     getWeatherByZip(zipCode)
 
     document.getElementById('nextbutton').removeChild(document.getElementById('nextbutton').getElementsByTagName('div')[0]);
@@ -368,21 +369,28 @@ nextButton.addEventListener('click', () =>{
 })
 
 const generateInput = (weatherType) => {
-    const button = document.createElement("div")
-    const input = document.createElement("input")
+    const input = document.createElement("select")
     const label = document.createElement("label")
-    button.id = "submitZipCode"
-    button.innerText = "Generate Playlist"
-    button.classList.add('nextButton')
+    const opt1 = document.createElement("option")
+    const opt2 = document.createElement("option")
+    const opt3 = document.createElement("option")
 
-    label.innerText = `What does the ${weatherType} make you feel like?`
+    opt1.innerText = 'Happy'
+    opt2.innerText = 'Sad'
+    opt3.innerText = 'Angry'
+
+    input.appendChild(opt1)
+    input.appendChild(opt2)
+    input.appendChild(opt3)
+
+    document.getElementById('submitButton').classList.remove('hidden')
+
+    label.innerText = `What does the ${weatherType} weather make you feel like?`
     
     document.getElementById('nextbutton').classList.remove('nextButton')
     document.getElementById('nextbutton').classList.add('input')
     document.getElementById('nextbutton').appendChild(label)
     document.getElementById('nextbutton').appendChild(input)
-    document.getElementById('nextbutton').appendChild(button)
-    print(document.getElementById('nextbutton'))
  
 }
 
@@ -425,20 +433,21 @@ async function getWeatherByZip(zipCode) {
     let weatherKey = 'fed200574f31448d3c4ef74409fc60bf';
 
     const response = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?zip=94040,us&appid=${weatherKey}&units=imperial`
+        `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=${weatherKey}&units=imperial`
     )
+    
     const data = await response.json()
     determineWeather(data)
 }
 
 function determineWeather(data){
     if (data.main.temp_max > 80 && data.clouds.all === 0){
-        console.log('sunny')
+        generateInput('sunny')
     } else if (data.main.temp_max < 40 ){
-        console.log('winter')
-    } else if (data.main.temp_max < 60 ){
-        console.log('rainy')
+        generateInput('winter')
+    } else if (data.weather){
+        generateInput('rainy')
     } else if (data.main.temp_max < 80 ){
-        console.log('cloudy')
-    } else console.log('wut')
+        generateInput('cloudy')
+    } else generateInput('wut')
 }
