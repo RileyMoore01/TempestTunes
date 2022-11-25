@@ -361,7 +361,7 @@ const nextButton = document.getElementById("nextbutton");
 
 nextButton.addEventListener('click', () =>{
     let zipCode = 79416
-    getWeatherZip(zipCode)
+    getWeatherByZip(zipCode)
 
     document.getElementById('nextbutton').removeChild(document.getElementById('nextbutton').getElementsByTagName('div')[0]);
     document.getElementById('insert').removeChild(document.getElementById('insert').getElementsByClassName('zipCode')[0])
@@ -421,69 +421,24 @@ overlay.addEventListener('click', () =>{
 
 let inputElement = document.getElementById("imageLink")
 
+async function getWeatherByZip(zipCode) {
+    let weatherKey = 'fed200574f31448d3c4ef74409fc60bf';
 
-function getCurrentWeather(form){
-    var sunny = form.sunny.value;
-    alert("You chose: " + sunny);
+    const response = await fetch(
+        `https://api.openweathermap.org/data/2.5/weather?zip=94040,us&appid=${weatherKey}&units=imperial`
+    )
+    const data = await response.json()
+    determineWeather(data)
 }
 
-
-function getWeatherZip( zipCode ) {
-    var key = 'fed200574f31448d3c4ef74409fc60bf';
-    fetch('http://api.openweathermap.org/geo/1.0/zip?zip=' + zipCode + '&appid=' + key)  
-    .then(function(resp) { return resp.json() }) // Convert data to json
-    .then(function(data) {
-        mapLocation( data ); // Call drawWeather
-    })
-    .catch(function() {
-        console.log('error')        
-    });
-    
+function determineWeather(data){
+    if (data.main.temp_max > 80 && data.clouds.all === 0){
+        console.log('sunny')
+    } else if (data.main.temp_max < 40 ){
+        console.log('winter')
+    } else if (data.main.temp_max < 60 ){
+        console.log('rainy')
+    } else if (data.main.temp_max < 80 ){
+        console.log('cloudy')
+    } else console.log('wut')
 }
-
-
-function mapLocation( d ) {
-    var lat = d.lat
-    var lon = d.lon
-    var key = 'fed200574f31448d3c4ef74409fc60bf';
-
-    fetch('https://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid='+key)  
-    .then(function(data) {
-        console.log( data ); // Call drawWeather
-        mapWeather( data )
-    })
-    .catch(function(error) {
-        console.log( error )
-    });
-    
-}
-
-
-function mapWeather( d ) {
-    var celcius = Math.round(parseFloat(d.main.temp)-273.15);
-    var fahrenheit = Math.round(((parseFloat(d.main.temp)-273.15)*1.8)+32); 
-    var mainType = d.weather[0].main;
-    var description = d.weather[0].description;
-    var windSpeed = d.wind.speed;
-    var humidity = d.main.humidity
-    
-    document.getElementById('description').innerHTML = 'Description: ' +  description;
-    document.getElementById('temp').innerHTML = fahrenheit + '&deg;';
-    document.getElementById('location').innerHTML = d.name;
-    document.getElementById('speed').innerHTML = 'Wind Speed: ' + windSpeed;
-    document.getElementById('type').innerHTML = 'Main: ' + mainType;
-    document.getElementById('humidity').innerHTML = 'Humidity: ' + humidity;
-
-    print('here');
-    
-    if( description.indexOf('rain') > 0 ) {
-        generateInput('rainy');
-    } else if( description.indexOf('cloud') > 0 ) {
-        generateInput('cloud');
-    } else if( description.indexOf('sunny') > 0 ) {
-        generateInput('sunny');
-    }
-    generateInput('sunny')
-    
-}
-
