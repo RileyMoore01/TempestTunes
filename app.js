@@ -377,10 +377,14 @@ const generateInput = (weatherType) => {
     opt1.innerText = 'Happy'
     opt2.innerText = 'Sad'
     opt3.innerText = 'Angry'
+    opt1.value = '1'
+    opt2.value = '2'
+    opt3.value = '3'
 
     input.appendChild(opt1)
     input.appendChild(opt2)
     input.appendChild(opt3)
+    input.id = 'selectMood'
 
     document.getElementById('submitButton').classList.remove('hidden')
 
@@ -439,7 +443,10 @@ async function getWeatherByZip(zipCode) {
 }
 
 function determineWeather(data){
-    if (data.main.temp_max > 80 && data.clouds.all === 0){
+    let selected = document.getElementById('selectMood')
+    let value = selected.value;
+    let text = selected.options[selected.selectedIndex].text
+    if (data.main.temp_max > 80 && data.clouds.all === 0 && value === 1 ){
         localStorage.setItem(
             'weather', 'sunny'            
         )
@@ -447,7 +454,7 @@ function determineWeather(data){
             'url', HOT            
         )
         generateInput(HOT)
-    } else if (data.main.temp_max < 40 ){
+    } else if (data.main.temp_max < 40 && value === 1){
         localStorage.setItem(
             'weather', 'winter'            
         )
@@ -455,7 +462,7 @@ function determineWeather(data){
             'url', WINTER            
         )
         generateInput(WINTER)
-    } else if (data.weather[0] == 'rain'){
+    } else if (data.weather[0] == 'rain' && value === 1){
         localStorage.setItem(
             'weather', 'rain'            
         )
@@ -463,7 +470,71 @@ function determineWeather(data){
             'url', RAIN            
         )
         generateInput(RAIN)
-    } else if (data.main.temp_max < 80 ){
+    } else if (data.main.temp_max < 80 && value === 1){
+        localStorage.setItem(
+            'weather', 'windy'            
+        )
+        localStorage.setItem(
+            'url', WINDY            
+        )
+        generateInput(WINDY)
+    }else if (data.main.temp_max > 80 && data.clouds.all === 0 && value === 2){
+        localStorage.setItem(
+            'weather', 'sunny'            
+        )
+        localStorage.setItem(
+            'url', HOT            
+        )
+        generateInput(HOT)
+    } else if (data.main.temp_max < 40 && value === 2){
+        localStorage.setItem(
+            'weather', 'winter'            
+        )
+        localStorage.setItem(
+            'url', WINTER            
+        )
+        generateInput(WINTER)
+    } else if (data.weather[0] == 'rain' && value === 2){
+        localStorage.setItem(
+            'weather', 'rain'            
+        )
+        localStorage.setItem(
+            'url', RAIN            
+        )
+        generateInput(RAIN)
+    } else if (data.main.temp_max < 80 && value === 2){
+        localStorage.setItem(
+            'weather', 'windy'            
+        )
+        localStorage.setItem(
+            'url', WINDY            
+        )
+        generateInput(WINDY)
+    }else if (data.main.temp_max > 80 && data.clouds.all === 0 && value === 3){
+        localStorage.setItem(
+            'weather', 'sunny'            
+        )
+        localStorage.setItem(
+            'url', HOT            
+        )
+        generateInput(HOT)
+    } else if (data.main.temp_max < 40 && value === 3){
+        localStorage.setItem(
+            'weather', 'winter'            
+        )
+        localStorage.setItem(
+            'url', WINTER            
+        )
+        generateInput(WINTER)
+    } else if (data.weather[0] == 'rain' && value === 3){
+        localStorage.setItem(
+            'weather', 'rain'            
+        )
+        localStorage.setItem(
+            'url', RAIN            
+        )
+        generateInput(RAIN)
+    } else if (data.main.temp_max < 80 && value === 3){
         localStorage.setItem(
             'weather', 'windy'            
         )
