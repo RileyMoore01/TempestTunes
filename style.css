@@ -323,7 +323,7 @@ form{
 .nextButton{
     color: white;
     background-color: black;
-    width: auto;
+    width: 5rem;
     height: 2rem;
     display: flex;
     justify-content: center;

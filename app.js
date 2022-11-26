@@ -9,10 +9,18 @@ const AUTHORIZE = 'https://accounts.spotify.com/authorize'
 const TOKEN = 'https://accounts.spotify.com/api/token'
 const PLAYLISTS = "https://api.spotify.com/v1/me/playlists";
 const USER = "https://api.spotify.com/v1/me"
-const WINTER = "https://api.spotify.com/v1/playlists/0KQoD1gO2X9KwDP8tG4mR2/tracks?limit=10"
-const RAIN =   "https://api.spotify.com/v1/playlists/6VX42WTrkQfdezdGypHpXM/tracks?limit=10"
-const HOT =    "https://api.spotify.com/v1/playlists/4Ffy3yTfU1xTCtleaR07wI/tracks?limit=10"
-const WINDY =  "https://api.spotify.com/v1/playlists/2quk8WZfpM7j8vqvWtO9xP/tracks?limit=10"
+const HWINTER = "https://api.spotify.com/v1/playlists/0KQoD1gO2X9KwDP8tG4mR2"
+const AWINTER = "https://api.spotify.com/v1/playlists/6M0Y3K1g812tEorwbmbrsk"
+const SWINTER = "https://api.spotify.com/v1/playlists/6aIRCjyVgqumnBjII6eqfv"
+const ARAIN = "https://api.spotify.com/v1/playlists/1zYOGPjZuax1sv97pAn1QR"
+const SRAIN = "https://api.spotify.com/v1/playlists/6VX42WTrkQfdezdGypHpXM"
+const HRAIN = "https://api.spotify.com/v1/playlists/2SwKiduWvuNF5BdvP6KriI"
+const AHOT = "https://api.spotify.com/v1/playlists/18YP1KE5D7vILbJYuftXt2"
+const SHOT = "https://api.spotify.com/v1/playlists/4RvDPhoeOlp5ttiZ2qSiLk"
+const HHOT = "https://api.spotify.com/v1/playlists/4Ffy3yTfU1xTCtleaR07wI"
+const AWINDY = "https://api.spotify.com/v1/playlists/1SFWJg7yWTvopBM4XW8owt"
+const SWINDY = "https://api.spotify.com/v1/playlists/7lG6NP07Vx3LqnYz3hEjSH"
+const HWINDY = "https://api.spotify.com/v1/playlists/2quk8WZfpM7j8vqvWtO9xP"
 
 function onPageLoad(){
     
@@ -251,8 +259,8 @@ function populatePastPlaylistPage(){
 
 function translateToURIs(tracks){
     let URIstring = ''
-    for (let i = 0; i< tracks.length; i++){
-        URIstring += tracks[i].track.uri + ','
+    for (let i = 0; i< tracks.items.length; i++){
+        URIstring += tracks.items[i].track.uri + ','
     }
     callApi(
     "POST",
@@ -281,7 +289,8 @@ function addTracksToNewPlaylist(){
 function handleGetTracksResponse(){
     if ( this.status == 200 ){
         var data = JSON.parse(this.responseText);
-        translateToURIs(data.items)
+        console.log(data)
+        translateToURIs(data.tracks)
     }
     else if ( this.status == 401 ){
         refreshAccessToken()
@@ -296,6 +305,7 @@ function handleCreatePlaylistReponse(){
     if ( this.status == 201 ){
         let imageLink = document.getElementById("imageLink").files[0]
         var data = JSON.parse(this.responseText);
+        getWeatherByZip(localStorage.getItem('zip'))
         selectedWeather = localStorage.getItem('url')    
         localStorage.setItem("newPlaylistId", data.href)
         callApi("GET",selectedWeather,null,handleGetTracksResponse)
@@ -324,21 +334,6 @@ function handlePlaylistImageResponse(){
     }
 }
 
-function getWeatherOption(){
-    let selectedIndex = document.getElementById("Weather").selectedIndex
-    let weatherValue = document.getElementById("Weather").options[selectedIndex].value
-
-    if(weatherValue === 1){
-        return WINTER
-    }else if(weatherValue === 2){
-        return RAIN
-    }else if(weatherValue === 3){
-        return HOT
-    }else if(weatherValue === 4){
-        return WINDY
-    }
-}
-
 function createPlaylistInformation(){
     
     let playlistName = document.getElementById("playlistName").value
@@ -359,15 +354,15 @@ const overlay = document.getElementById('overlay');
 const nextButton = document.getElementById("nextbutton");
 
 nextButton.addEventListener('click', () =>{
-    let zipCode = document.getElementById('zipCodes').value
-    console.log(document.getElementById('zipCodes').value)
-    getWeatherByZip(zipCode)
+    localStorage.setItem('zip', document.getElementById('zipCodes').value)
 
+    
     document.getElementById('nextbutton').removeChild(document.getElementById('nextbutton').getElementsByTagName('div')[0]);
     document.getElementById('insert').removeChild(document.getElementById('insert').getElementsByClassName('zipCode')[0])
+    generateInput()
 })
 
-const generateInput = (weatherType) => {
+const generateInput = () => {
     const input = document.createElement("select")
     const label = document.createElement("label")
     const opt1 = document.createElement("option")
@@ -388,7 +383,7 @@ const generateInput = (weatherType) => {
 
     document.getElementById('submitButton').classList.remove('hidden')
 
-    label.innerText = `What does the ${localStorage.getItem('weather')} weather make you feel like?`
+    label.innerText = `What does the weather make you feel like?`
     
     document.getElementById('nextbutton').classList.remove('nextButton')
     document.getElementById('nextbutton').classList.add('input')
@@ -442,105 +437,102 @@ async function getWeatherByZip(zipCode) {
     determineWeather(data)
 }
 
+
 function determineWeather(data){
-    let selected = document.getElementById('selectMood')
-    let value = selected.value;
-    let text = selected.options[selected.selectedIndex].text
-    if (data.main.temp_max > 80 && data.clouds.all === 0 && value === 1 ){
-        localStorage.setItem(
-            'weather', 'sunny'            
-        )
-        localStorage.setItem(
-            'url', HOT            
-        )
-        generateInput(HOT)
-    } else if (data.main.temp_max < 40 && value === 1){
-        localStorage.setItem(
-            'weather', 'winter'            
-        )
-        localStorage.setItem(
-            'url', WINTER            
-        )
-        generateInput(WINTER)
-    } else if (data.weather[0] == 'rain' && value === 1){
-        localStorage.setItem(
-            'weather', 'rain'            
-        )
-        localStorage.setItem(
-            'url', RAIN            
-        )
-        generateInput(RAIN)
-    } else if (data.main.temp_max < 80 && value === 1){
-        localStorage.setItem(
-            'weather', 'windy'            
-        )
-        localStorage.setItem(
-            'url', WINDY            
-        )
-        generateInput(WINDY)
-    }else if (data.main.temp_max > 80 && data.clouds.all === 0 && value === 2){
-        localStorage.setItem(
-            'weather', 'sunny'            
-        )
-        localStorage.setItem(
-            'url', HOT            
-        )
-        generateInput(HOT)
-    } else if (data.main.temp_max < 40 && value === 2){
-        localStorage.setItem(
-            'weather', 'winter'            
-        )
-        localStorage.setItem(
-            'url', WINTER            
-        )
-        generateInput(WINTER)
-    } else if (data.weather[0] == 'rain' && value === 2){
-        localStorage.setItem(
-            'weather', 'rain'            
-        )
-        localStorage.setItem(
-            'url', RAIN            
-        )
-        generateInput(RAIN)
-    } else if (data.main.temp_max < 80 && value === 2){
-        localStorage.setItem(
-            'weather', 'windy'            
-        )
-        localStorage.setItem(
-            'url', WINDY            
-        )
-        generateInput(WINDY)
-    }else if (data.main.temp_max > 80 && data.clouds.all === 0 && value === 3){
-        localStorage.setItem(
-            'weather', 'sunny'            
-        )
-        localStorage.setItem(
-            'url', HOT            
-        )
-        generateInput(HOT)
-    } else if (data.main.temp_max < 40 && value === 3){
-        localStorage.setItem(
-            'weather', 'winter'            
-        )
-        localStorage.setItem(
-            'url', WINTER            
-        )
-        generateInput(WINTER)
-    } else if (data.weather[0] == 'rain' && value === 3){
-        localStorage.setItem(
-            'weather', 'rain'            
-        )
-        localStorage.setItem(
-            'url', RAIN            
-        )
-        generateInput(RAIN)
-    } else if (data.main.temp_max < 80 && value === 3){
-        localStorage.setItem(
-            'weather', 'windy'            
-        )
-        localStorage.setItem(
-            'url', WINDY            
-        )
-        generateInput(WINDY)
-    } else generateInput('wut')
+    let select = document.getElementById("selectMood");
+    console.log(data.main.temp_max)
+    let value = Number(select.value);
+   
+
+    if(value === 1){
+        if (data.main.temp_max > 80 && data.clouds.all === 0){
+            localStorage.setItem(
+                'weather', 'sunny'            
+            )
+            localStorage.setItem(
+                'url', HHOT            
+            )
+        } else if (data.main.temp_max < 40){
+            localStorage.setItem(
+                'weather', 'winter'            
+            )
+            localStorage.setItem(
+                'url', HWINTER            
+            )
+        } else if (data.main.temp_max < 60){
+            localStorage.setItem(
+                'weather', 'rain'            
+            )
+            localStorage.setItem(
+                'url', HRAIN            
+            )
+        } else if (data.main.temp_max < 70 ){
+            localStorage.setItem(
+                'weather', 'windy'            
+            )
+            localStorage.setItem(
+                'url', HWINDY            
+            )
+        }
+    }else if(value === 2){
+        if (data.main.temp_max > 80 && data.clouds.all === 0){
+            localStorage.setItem(
+                'weather', 'sunny'            
+            )
+            localStorage.setItem(
+                'url', SHOT            
+            )
+        } else if (data.main.temp_max < 40){
+            localStorage.setItem(
+                'weather', 'winter'            
+            )
+            localStorage.setItem(
+                'url', SWINTER            
+            )
+        } else if (data.main.temp_max < 60){
+            localStorage.setItem(
+                'weather', 'rain'            
+            )
+            localStorage.setItem(
+                'url', SRAIN            
+            )
+        } else if (data.main.temp_max < 70 ){
+            localStorage.setItem(
+                'weather', 'windy'            
+            )
+            localStorage.setItem(
+                'url', SWINDY            
+            )
+        }
+    }else if(value === 3){
+        if (data.main.temp_max > 80 && data.clouds.all === 0){
+            localStorage.setItem(
+                'weather', 'sunny'            
+            )
+            localStorage.setItem(
+                'url', AHOT            
+            )
+        } else if (data.main.temp_max < 40){
+            localStorage.setItem(
+                'weather', 'winter'            
+            )
+            localStorage.setItem(
+                'url', AWINTER            
+            )
+        } else if (data.main.temp_max < 60){
+            localStorage.setItem(
+                'weather', 'rain'            
+            )
+            localStorage.setItem(
+                'url', ARAIN            
+            )
+        } else if (data.main.temp_max < 70 ){
+            localStorage.setItem(
+                'weather', 'windy'            
+            )
+            localStorage.setItem(
+                'url', AWINDY            
+            )
+        }
+    }
 }
