@@ -452,7 +452,7 @@ function determineWeather(data){
             localStorage.setItem(
                 'url', HHOT            
             )
-        } else if (data.main.weather[0] === 'snowy' && data.main.temp_max > 50){
+        } else if (data.main.weather[0] === 'snowy' && data.main.temp_max < 50){
             localStorage.setItem(
                 'weather', 'winter'            
             )
@@ -482,7 +482,7 @@ function determineWeather(data){
             localStorage.setItem(
                 'url', SHOT            
             )
-        } else if (data.main.weather[0] === 'snowy' && data.main.temp_max > 50){
+        } else if (data.main.weather[0] === 'snowy' && data.main.temp_max < 50){
             localStorage.setItem(
                 'weather', 'winter'            
             )
@@ -512,7 +512,7 @@ function determineWeather(data){
             localStorage.setItem(
                 'url', AHOT            
             )
-        } else if (data.main.weather[0] === 'snowy' && data.main.temp_max > 50){
+        } else if (data.main.weather[0] === 'snowy' && data.main.temp_max < 50){
             localStorage.setItem(
                 'weather', 'winter'            
             )
