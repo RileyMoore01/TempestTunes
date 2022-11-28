@@ -445,28 +445,28 @@ function determineWeather(data){
    
 
     if(value === 1){
-        if (data.main.temp_max > 80 && data.clouds.all === 0){
+        if (data.main.temp_max > 80 && data.clouds.all === 0 && data.main.weather[0] !== 'windy'){
             localStorage.setItem(
                 'weather', 'sunny'            
             )
             localStorage.setItem(
                 'url', HHOT            
             )
-        } else if (data.main.temp_max < 40){
+        } else if (data.main.weather[0] === 'snowy' && data.main.temp_max > 50){
             localStorage.setItem(
                 'weather', 'winter'            
             )
             localStorage.setItem(
                 'url', HWINTER            
             )
-        } else if (data.main.temp_max < 60){
+        } else if (data.main.weather[0] === 'rain'){
             localStorage.setItem(
                 'weather', 'rain'            
             )
             localStorage.setItem(
                 'url', HRAIN            
             )
-        } else if (data.main.temp_max < 70 ){
+        } else if (data.main.weather[0] === 'windy'){
             localStorage.setItem(
                 'weather', 'windy'            
             )
@@ -475,28 +475,28 @@ function determineWeather(data){
             )
         }
     }else if(value === 2){
-        if (data.main.temp_max > 80 && data.clouds.all === 0){
+        if (data.main.temp_max > 80 && data.clouds.all === 0 && data.main.weather[0] !== 'windy'){
             localStorage.setItem(
                 'weather', 'sunny'            
             )
             localStorage.setItem(
                 'url', SHOT            
             )
-        } else if (data.main.temp_max < 40){
+        } else if (data.main.weather[0] === 'snowy' && data.main.temp_max > 50){
             localStorage.setItem(
                 'weather', 'winter'            
             )
             localStorage.setItem(
                 'url', SWINTER            
             )
-        } else if (data.main.temp_max < 60){
+        } else if (data.main.weather[0] === 'rain'){
             localStorage.setItem(
                 'weather', 'rain'            
             )
             localStorage.setItem(
                 'url', SRAIN            
             )
-        } else if (data.main.temp_max < 70 ){
+        } else if (data.main.weather[0] === 'windy'){
             localStorage.setItem(
                 'weather', 'windy'            
             )
@@ -505,28 +505,28 @@ function determineWeather(data){
             )
         }
     }else if(value === 3){
-        if (data.main.temp_max > 80 && data.clouds.all === 0){
+        if (data.main.temp_max > 80 && data.clouds.all === 0 && data.main.weather[0] !== 'windy'){
             localStorage.setItem(
                 'weather', 'sunny'            
             )
             localStorage.setItem(
                 'url', AHOT            
             )
-        } else if (data.main.temp_max < 40){
+        } else if (data.main.weather[0] === 'snowy' && data.main.temp_max > 50){
             localStorage.setItem(
                 'weather', 'winter'            
             )
             localStorage.setItem(
                 'url', AWINTER            
             )
-        } else if (data.main.temp_max < 60){
+        } else if (data.main.weather[0] === 'rain'){
             localStorage.setItem(
                 'weather', 'rain'            
             )
             localStorage.setItem(
                 'url', ARAIN            
             )
-        } else if (data.main.temp_max < 70 ){
+        } else if (data.main.weather[0] === 'windy'){
             localStorage.setItem(
                 'weather', 'windy'            
             )
