@@ -1,14 +1,50 @@
-# TempestTunes
+<h1 color="blue" align="center"><strong>Tempest Tunes</strong></h2>
+<br />
+<br />
 
-- **Motivation**: <br />
-Choosing what music to listen to can be very difficult when you don’t know what you exactly want. Tempest Tunes aims to break away from genre defined, corporate curated playlists and go after emotions with the most easily identifiable visualization of emotions, the weather. Tempest Tunes will deliver music to listeners based on active weather readings for their area, so no more time will be wasted wondering what you want to listen to. However, the biggest takeaway is that Tempest Tunes will deliver music dynamically in real time as the weather changes. This allows users to continue listening to music over the course of a day as their mood changes over time. This ensures that there is nuance to certain weather such as "Rainy" that may be interpreted as sad by some, and cozy by others. However, you can still go into genre defined playlists such as "Rock" to get a feel for how the genre can span multiple different feelings. wE will allow users to seamlessly continue listening to their favorite tracks, while discovering new music throughout the day as their mood changes with the weather.
+<div align="center">
+    <img src="/img/logo.png" />
+</div>
 
-- **Functionality**: <br />
-The intended functionality is to take the current weather conditions and use those to curate a listening experience for a user. We would do this by taking the certain statistics about the weather using a weather API (OpenWeatherMap API) to generalize what genre/type of music someone would want to listen to and curate a playlist on spotify using their API that could tell us the genre and type of music. We are deciding if we want to use preset playlists or if it would randomize the playlist based on user input based on their mood combined with the data from OpenWeatherMap. This would obviously be location based, but we would most likely start in Lubbock and see if we could extend the functionality to see user location. We believe that this would differentiate us from other services (including the one already offered on Spotify). We would want this playlist to be automatically created and exported to the users specific Spotify account but we would have to see what the API allows, based on the documentation of said API we should be able to implement this functionality. We would let the user customize their playlist name but other than that it would be be predetermined when they generated the playlist 
+<br />
+<br />
 
-- **Outcome**: <br />
-The goal of Tempest Tunes is to provide curated music to its user based upon the current weather. In doing so, we will learn about connecting to API’s such as Spotify and OpenWeatherMap. WIth the use of an API, the end model will be purley software with no inclusion of hardware other than the computer executing the software. Now to explain a little of the user experience, users will be able to connect to our user interface and begin their curated music experience. When a new user begins, they will be prompted to select how they feel according to the selected weather status. This will tell the Tempest Tunes algorithm what to play for that user during the current weather. Once the user becomes accustomed to Tempest Tunes, they will be able to open the user interface and automatically play their music. From that point there will be features to add music to selected playlist, dislike songs and songs similar to that song, and create their own playlists for a weather type if they desire. The true outcome of Tempest Tunes is to allow the user to decide how they want to feel according to the weather and enjoy the music to enhance their mood. 
+<h3>About Us</h3>
+<details>
+<h3 align="center">Motivation</h3>
 
-- **API's**: <br />
-![My Image](img/OpenWeatherMap.jpg)
-![My Image](img/Spotify.jpg)
+<div align="center">
+<p>
+             Choosing what music to listen to can be very difficult when you don’t know what you exactly want. Many people shuffle all of their saved songs or take         time to specifically tailor playlists to their own desires. Other times, you may pick an already curated playlist pushed by the app you're listening to. All these     different ways of listening to music tend to be unenjoyable in one way or another and they keep listeners from discovering new music they may love. Tempest Tunes       aims to break away from genre-defined, corporate-curated playlists and go after emotions with the most easily identifiable visualization of emotions, the weather.     Tempest Tunes will deliver music to listeners based on active weather readings for their area, so no more time will be wasted wondering what you want to listen to.     However, the biggest takeaway is that Tempest Tunes will deliver music dynamically in real-time as the weather changes. This allows users to continue listening to     music over the course of a day as their mood changes over time. Another advantage over our competition is that Tempest Tunes allows users to give feedback on what     music they feel belongs to different types of weather patterns. This ensures that there is nuance to certain weather such as "Rainy" that may be interpreted as sad     by some, and cozy by others. Tempest Tunes also urges listeners to give different music a try by categorizing songs based on their moody vibes rather than their       genre. However, you can still go into genre-defined playlists such as "Rock" to get a feel for how the genre can span multiple different feelings. Tempest Tunes       will allow users to seamlessly continue   listening to their favorite tracks while discovering new music throughout the day as their mood changes with the weather.
+</p>
+</div>
+    
+<h3 align="center">Functionailty</h3>
+
+<div align="center">
+<p>     Once you login in through spotify, we will have you take a quick survey to see how you feel during the various weather condtions. This will allow us to get
+    to know you a little better and bring optimization to our song selection. Ensuring the user has a personally curated playlist.
+</p>
+
+<br />
+
+<p>
+        On our side we will take either the google's authinicated location or have the user manually enter their zip code. From there we will call the 
+    OpenWeatheMap API to find the current weather condition in their area. Then we are able to use the Spotify API to find music related to how that
+    user feels off of tags that the API offers.
+</p>
+</div>
+    
+<br />
+<br />
+    
+</details>
+
+<div align="center">
+<h2>How to use</h2>
+
+<p>
+    Once you login, you will see your username will be in the top right corner. On the home screen you will be able to see our questions to filled out.
+    When that is complete you will be able to export to Spotify and creating your playlist name, optional playlist image, and press Export.
+</p>
+</div>
